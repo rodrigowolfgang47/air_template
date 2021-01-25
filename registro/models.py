@@ -10,13 +10,10 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=100, blank=True)
     email = models.EmailField(max_length=150)
     bio = models.TextField()
+    singup_confirmation = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
-
-    def __str__(self):
-        return self.user.Username
-
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
