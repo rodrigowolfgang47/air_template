@@ -42,7 +42,13 @@ INSTALLED_APPS = [
 ]
 
 #configura o back-end para disparar e-mails de confirmações de cadastro
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = 'rodrigocosta47@outlook.com'
+EMAIL_HOST_PASSWORD = 'Gabi@55136691'
+EMAIL_PORT = 587
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

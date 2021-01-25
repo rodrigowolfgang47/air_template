@@ -7,11 +7,11 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .form import Cadastro
 from .tokens import account_activation_token
+from django.core.mail import EmailMessage,send_mail
+
 
 # from django.contrib.auth import login, authenticate
 # fom django.contrib.auth.forms import UserCreationForm
-
-
 
 
 # Create your views here.
@@ -19,21 +19,23 @@ from .tokens import account_activation_token
 
 # view responsável por cadastrar e enviar token de ativação
 def cadastro(request):
-    form = Cadastro()
-
     if request.method == 'POST':
         form = Cadastro(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()
-            user.profile.first_name = request.POST.get('first_name')
-            user.profile.last_name = request.POST.get('last_name')
-            user.profile.email = request.POST.get('email')
-            # Se o usuário não ativar o e-mail não pode logar
+            user = form.save(commit=False)
             user.is_activate = False
+            # testar se o usuario é cadastrado se não voltar com o cod abaixo
             user.save()
+
+            #user.refresh_from_db()
+
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+
+            # Se o usuário não ativar o e-mail não pode logar
             current_site = get_current_site(request)
-            subject = f'Ative sua conta clicando no link'
+            subject = 'Ative sua conta clicando no link'
 
             mensagem = render_to_string('requisicao_de_ativacao.html', {
                 'user': user,
@@ -41,7 +43,10 @@ def cadastro(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject, mensagem)
+            to_email = user.profile.email
+            send_mail(subject, mensagem, 'rodrigocosta47@outlook.com', [to_email],
+                      fail_silently=False)
+
             return redirect('ativador_enviado')
 
             # username = request.POST.get('username')
@@ -50,12 +55,15 @@ def cadastro(request):
             # login(request, user)
             # return redirect('home')
             # outra forna de redirecionar o usuário ----> return HttpResponseRedirect('http://127.0.0.1:8000/')
-
+    else:
+        form = Cadastro()
     return render(request, 'cadastro.html', {'form': form})
+
 
 # view exibe mensagem após o cafastro com sucesso e confirmação de e-mail
 def activation_sent_view(request):
     return render(request, 'activation_sent_view.html')
+
 
 def activate(request, uidb64, token):
     try:
