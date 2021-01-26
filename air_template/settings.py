@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'registro',
+    'criador_de_template'
 ]
 
 #configura o back-end para disparar e-mails de confirmações de cadastro

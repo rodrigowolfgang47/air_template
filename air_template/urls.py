@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from home import url as home_urls
 from registro import url as cadastro_urls
+from criador_de_template import url as cria_templates_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home_urls), name='home'),
-    path('', include(cadastro_urls), name='cadastro')
+    path('', include(cadastro_urls), name='cadastro'),
+    path('', include(cria_templates_urls), name='cria-template')
 ]

@@ -6,16 +6,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seja Bem vindo</title>
+    <title>Crie seu template</title>
 </head>
 <body>
-<form method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Login</button>
-</form>
-    <p>
-        Ainda não possui cadastros <a href="{% url 'cadastro' %}">Cadstre-se</a>
-    </p>
+    <h1>
+        teste
+    </h1>
+    <nav>
+        <form method="post" action="{% url 'sair' %}">
+            {% csrf_token %}
+            <button type="submit">
+                Sair
+            </button>
+        </form>
+    </nav>
 </body>
 </html>
