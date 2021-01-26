@@ -23,7 +23,7 @@ def cadastro(request):
         form = Cadastro(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_activate = False
+            user.is_active = False
             # testar se o usuario é cadastrado se não voltar com o cod abaixo
             user.save()
 
