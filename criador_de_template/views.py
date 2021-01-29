@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import mimetypes
 import pandas as pd
+from .forms import PlanilhaForm
 
 
 # Create your views here.
@@ -84,19 +85,18 @@ def leitor_de_planilha(planilha):
 # pega upload de arquivos
 def upload_files(request):
     if request.method == 'POST':
-        # pega arquivo mandado pelo input com o POST
-        arquivo_subido = request.FILES['document']
+        # Instansiando o formulário
+        form = PlanilhaForm(request.POST, request.FILES)
+        if form.is_valid():
+            nome_do_arquivo = form.save(commit=False)
+            #form.save()
+            url_do_arquivo_na_pasta = nome_do_arquivo.documento
 
-        # File system storage é o sistema que lida com o save dos arquivos subidos
-        file_system = FileSystemStorage()
-        nome_do_arquivo = file_system.save(arquivo_subido.name, arquivo_subido)
+            # funcao que le os dados da planilha e retorna um dicionario
+            dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
 
-        # Gera o url que está em media
-        url_do_arquivo = file_system.url(nome_do_arquivo)
-        url_do_arquivo_na_pasta = 'criador_de_template' + url_do_arquivo
-
-        # funcao que le os dados da planilha e retorna um dicionario
-        dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
-
-        # dicionario_com_dados_em_str = str(dicionario_com_dados)
-        return render(request, 'crie_seu_template.html', {'dicionario': dicionario_com_dados})
+            # dicionario_com_dados_em_str = str(dicionario_com_dados)
+            return render(request, 'crie_seu_template.html', {'dicionario': dicionario_com_dados, 'form': form})
+    else:
+        form = PlanilhaForm()
+    return render(request, 'crie_seu_template.html', {'form': form})

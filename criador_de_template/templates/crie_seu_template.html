@@ -27,17 +27,16 @@
     </button>
     </form>
 
-
-    <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
         {% csrf_token %}
-        <input type="file" name="document">
-        <button type="submit">
-            Enviar planilha
-        </button>
+        {{form}}
+        <button type="submit">Enviar planilha</button>
     </form>
 
-    <p>
+    {% if dicionario %}
+        <p>
         {{dicionario}}
-    </p>
+        </p>
+    {% endif %}
 </body>
 </html>
