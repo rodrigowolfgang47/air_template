@@ -91,12 +91,12 @@ def upload_files(request):
         file_system = FileSystemStorage()
         nome_do_arquivo = file_system.save(arquivo_subido.name, arquivo_subido)
 
-        #Gera o url que está em media
+        # Gera o url que está em media
         url_do_arquivo = file_system.url(nome_do_arquivo)
         url_do_arquivo_na_pasta = 'criador_de_template' + url_do_arquivo
 
-        #funcao que le os dados da planilha e retorna um dicionario
+        # funcao que le os dados da planilha e retorna um dicionario
         dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
 
-        #dicionario_com_dados_em_str = str(dicionario_com_dados)
+        # dicionario_com_dados_em_str = str(dicionario_com_dados)
         return render(request, 'crie_seu_template.html', {'dicionario': dicionario_com_dados})
