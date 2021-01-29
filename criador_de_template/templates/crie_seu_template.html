@@ -26,5 +26,18 @@
         Download aqui
     </button>
     </form>
+
+
+    <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="document">
+        <button type="submit">
+            Enviar planilha
+        </button>
+    </form>
+
+    <p>
+        {{dicionario}}
+    </p>
 </body>
 </html>

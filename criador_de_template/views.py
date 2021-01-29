@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import mimetypes
@@ -36,8 +37,7 @@ def download_file(request):
 
 
 def leitor_de_planilha(planilha):
-    arquivo = planilha
-    date_frame = pd.read_excel(arquivo, index_col=None, header=None)
+    date_frame = pd.read_excel(planilha, index_col=None, header=None)
 
     armazena_dados = {}
     armazena_linha = {}
@@ -65,10 +65,10 @@ def leitor_de_planilha(planilha):
             titulo_da_linha = date_frame.loc[0]
 
             # Le a coluna depois do código
-            coluna = date_frame.loc[index_pra_baixo]
+            coluna = date_frame.loc[index_pra_frente]
 
             # Adiciona o titulo como key e a celula como valor
-            armazena_linha[titulo_da_linha[index_pra_frente]] = coluna[index_pra_frente]
+            armazena_linha[titulo_da_linha[index_pra_titulo]] = coluna[index_pra_titulo]
 
             index_pra_frente += 1
             index_pra_titulo += 1
@@ -79,3 +79,24 @@ def leitor_de_planilha(planilha):
         index_pra_baixo += 1
 
     return armazena_dados
+
+
+# pega upload de arquivos
+def upload_files(request):
+    if request.method == 'POST':
+        # pega arquivo mandado pelo input com o POST
+        arquivo_subido = request.FILES['document']
+
+        # File system storage é o sistema que lida com o save dos arquivos subidos
+        file_system = FileSystemStorage()
+        nome_do_arquivo = file_system.save(arquivo_subido.name, arquivo_subido)
+
+        #Gera o url que está em media
+        url_do_arquivo = file_system.url(nome_do_arquivo)
+        url_do_arquivo_na_pasta = 'criador_de_template' + url_do_arquivo
+
+        #funcao que le os dados da planilha e retorna um dicionario
+        dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
+
+        #dicionario_com_dados_em_str = str(dicionario_com_dados)
+        return render(request, 'crie_seu_template.html', {'dicionario': dicionario_com_dados})
