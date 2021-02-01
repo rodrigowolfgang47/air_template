@@ -1,11 +1,11 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 import mimetypes
 import pandas as pd
 from .forms import PlanilhaForm
+from .models import Produto
 
 
 # Create your views here.
@@ -13,7 +13,8 @@ from .forms import PlanilhaForm
 # Coloquei o decorator login_request para obrigar o usuário a logar
 @login_required()
 def crie_seu_template(request):
-    return render(request, 'crie_seu_template.html')
+    form = PlanilhaForm()
+    return render(request, 'crie_seu_template.html', {'form': form})
 
 
 # View responsável por deslogar usuário
@@ -29,7 +30,7 @@ def download_file(request):
     file_path = "criador_de_template/staticfiles/excel/base_air_template_layout.xlsx"
     file_name = 'base_air_template_layout.xlsx'
 
-    # Adicionei a lib pandas para abrir a planilha e a openpyxl para erencias os arquivos em excel
+    # Adicionei a lib pandas para abrir a planilha e a openpyxl para gerenciar os arquivos em excel
     file = pd.read_excel(file_path)
     mime_type, _ = mimetypes.guess_type(file_path)
     response = HttpResponse(file, content_type=mime_type)
@@ -38,49 +39,59 @@ def download_file(request):
 
 
 def leitor_de_planilha(planilha):
+
     date_frame = pd.read_excel(planilha, index_col=None, header=None)
 
-    armazena_dados = {}
-    armazena_linha = {}
+    armazena_cod = []
 
-    # Conta o numero de colunas
-    numero_de_linhas = len(date_frame.loc[0])
-
+    # pega a primeira coluna inteita
     colunas = date_frame[0]
+    linhas_por_linha = 1
 
-    # Contador de informações
-    index_pra_baixo = 1
-    index_pra_frente = 1
-    index_pra_titulo = 0
+    for cod in colunas:
+        while linhas_por_linha <= len(colunas) - 1:
+            codigo_da_peca = colunas[linhas_por_linha]
+            linhas_por_linha += 1
+            armazena_cod.append(codigo_da_peca)
 
-    # vai iterar o valor de colunas contido no data frame
-    for coluna_01 in date_frame:
+    # ------------------------------------------------ #
 
-        # vai adicionar o codigo da primeira linha da primeira coluna
-        cod_da_peca = colunas[index_pra_baixo]
-        codigo_da_peca_str = str(cod_da_peca)
+    # titulo da planilha começa aqui
 
-        # vai iterar em todos os itens da linha e adicionar a lista Armazena_Linha
-        while index_pra_frente < numero_de_linhas:
-            # Le a a primeira linha do data frame
-            titulo_da_linha = date_frame.loc[0]
+    lista_de_dicionario = []
 
-            # Le a coluna depois do código
-            coluna = date_frame.loc[index_pra_frente]
+    titulo_da_planilha = date_frame.loc[0]
 
-            # Adiciona o titulo como key e a celula como valor
-            armazena_linha[titulo_da_linha[index_pra_titulo]] = coluna[index_pra_titulo]
+    todos_os_cod = date_frame[0]
 
-            index_pra_frente += 1
-            index_pra_titulo += 1
+    for codigos in range(1, len(todos_os_cod) - 1):
+        dicionario_com_itens = {}
+        linhas = date_frame.loc[codigos]
+        comeca_na_primeira_coluna = 0
 
-        # armazena o código do produto como key e a linha completa com titulos para cada campo
-        armazena_dados[codigo_da_peca_str] = armazena_linha
+        for titulo in titulo_da_planilha:
+            dicionario_com_itens[titulo_da_planilha[comeca_na_primeira_coluna]] = linhas[comeca_na_primeira_coluna]
+            comeca_na_primeira_coluna += 1
 
-        index_pra_baixo += 1
+        lista_de_dicionario.append(dicionario_com_itens)
 
-    return armazena_dados
+    return lista_de_dicionario
 
+
+def subir_para_model(lista_de_produtos, cliente):
+    for itens in lista_de_produtos:
+        produtos = Produto(
+            cliente=cliente,
+            cod_da_peca=itens['Cód. Cobra'],
+            marca=itens['Marca'],
+            descricao=itens['Descrição de produto'],
+            aplicacao=itens['Aplicação'],
+            preco=itens['Preço'],
+            destaque=itens['Gostaria de destacar este produto?'],
+            )
+        produtos.save()
+
+    return produtos
 
 # pega upload de arquivos
 def upload_files(request):
@@ -89,14 +100,20 @@ def upload_files(request):
         form = PlanilhaForm(request.POST, request.FILES)
         if form.is_valid():
             nome_do_arquivo = form.save(commit=False)
-            #form.save()
+            # form.save()
             url_do_arquivo_na_pasta = nome_do_arquivo.documento
 
             # funcao que le os dados da planilha e retorna um dicionario
             dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
 
-            # dicionario_com_dados_em_str = str(dicionario_com_dados)
-            return render(request, 'crie_seu_template.html', {'dicionario': dicionario_com_dados, 'form': form})
+            cliente = request.POST.get('cliente')
+
+            produtos = subir_para_model(dicionario_com_dados, cliente)
+            return render(request, 'template_final.html', {'produtos': produtos})
     else:
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})
+
+
+def template_final(request):
+    return render(request, 'template_final.html')
