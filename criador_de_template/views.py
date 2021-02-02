@@ -39,7 +39,6 @@ def download_file(request):
 
 
 def leitor_de_planilha(planilha):
-
     date_frame = pd.read_excel(planilha, index_col=None, header=None)
 
     armazena_cod = []
@@ -80,7 +79,7 @@ def leitor_de_planilha(planilha):
 
 def subir_para_model(lista_de_produtos, cliente):
     for itens in lista_de_produtos:
-        produtos = Produto(
+        produtos = Produto.objects.create(
             cliente=cliente,
             cod_da_peca=itens['Cód. Cobra'],
             marca=itens['Marca'],
@@ -88,10 +87,11 @@ def subir_para_model(lista_de_produtos, cliente):
             aplicacao=itens['Aplicação'],
             preco=itens['Preço'],
             destaque=itens['Gostaria de destacar este produto?'],
-            )
+        )
         produtos.save()
 
     return produtos
+
 
 # pega upload de arquivos
 def upload_files(request):
@@ -108,12 +108,15 @@ def upload_files(request):
 
             cliente = request.POST.get('cliente')
 
-            produtos = subir_para_model(dicionario_com_dados, cliente)
-            return render(request, 'template_final.html', {'produtos': produtos})
+            subir_para_model(dicionario_com_dados, cliente)
+
+            return redirect('template')
     else:
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})
 
 
 def template_final(request):
-    return render(request, 'template_final.html')
+    produtos = Produto.objects.all()
+    print(produtos)
+    return render(request, 'template_final.html',{'produtos': produtos})

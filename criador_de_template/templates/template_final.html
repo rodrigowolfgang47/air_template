@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nome do cliente</title>
+    <title>{{produtos.cliente}}</title>
 </head>
 <body>
-        <h3>
-        {{produtos.cliente}}
-        </h3>
-        <p>{{ produtos.cod_da_peca }}</p>
-        <p>{{ produtos.marca }}</p>
-        <p>{{ produtos.descricao }}</p>
-        <p>{{ produtos.aplicacao }}</p>
-        <p>{{ produtos.preco }}</p>
+    {% for produto in produtos %}
+        <div>
+            <p>{{ produto.cod_da_peca }}</p>
+            <p>{{ produto.marca }}</p>
+            <p>{{ produto.descricao }}</p>
+            <p>{{ produto.aplicacao }}</p>
+            <p>{{ produto.preco }}</p>
+        </div>
+    {% endfor %}
 
 </body>
 </html>

@@ -17,4 +17,4 @@ class Produto(models.Model):
     destaque = models.BooleanField(default=False)
 
     def __str__(self):
-        return Produto
+        return f'{self.cliente} {self.cod_da_peca} {self.marca} {self.descricao} {self.aplicacao} {self.preco} {self.destaque}'
