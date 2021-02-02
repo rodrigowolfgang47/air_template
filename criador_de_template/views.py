@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect
 import mimetypes
 import pandas as pd
 from .forms import PlanilhaForm
@@ -92,10 +92,9 @@ def subir_para_model(lista_de_produtos, cliente):
         )
         produtos.save()
 
-    return produtos
-
 
 # pega upload de arquivos e envia planilha pa model
+@login_required()
 def upload_files(request):
     if request.method == 'POST':
         # Instansiando o formulário
@@ -117,7 +116,7 @@ def upload_files(request):
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})
 
-
+@login_required()
 def template_final(request):
     produtos = Produto.objects.all()
     print(produtos)
