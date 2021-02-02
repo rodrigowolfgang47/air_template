@@ -60,11 +60,14 @@ def leitor_de_planilha(planilha):
 
     lista_de_dicionario = []
 
+    #Ler a linha
     titulo_da_planilha = date_frame.loc[0]
 
+    # Primeira coluna
     todos_os_cod = date_frame[0]
 
-    for codigos in range(1, len(todos_os_cod) - 1):
+    # Le todos os códigos começando pela linha 1 e termina na 15
+    for codigos in range(1, len(todos_os_cod)):
         dicionario_com_itens = {}
         linhas = date_frame.loc[codigos]
         comeca_na_primeira_coluna = 0

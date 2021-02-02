@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Cadastro(UserCreationForm):
     first_name = forms.CharField(max_length=100, help_text=False)
     last_name = forms.CharField(max_length=100, help_text=False)
-    email = forms.EmailField(max_length=150, help_text='Email')
+    email = forms.EmailField(max_length=150)
 
 
     class Meta:
