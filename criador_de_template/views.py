@@ -38,6 +38,7 @@ def download_file(request):
     return response
 
 
+# responsavel por ler a planilha que foi enviada
 def leitor_de_planilha(planilha):
     date_frame = pd.read_excel(planilha, index_col=None, header=None)
 
@@ -77,6 +78,7 @@ def leitor_de_planilha(planilha):
     return lista_de_dicionario
 
 
+# Sobe para model a planilha lida
 def subir_para_model(lista_de_produtos, cliente):
     for itens in lista_de_produtos:
         produtos = Produto.objects.create(
@@ -93,7 +95,7 @@ def subir_para_model(lista_de_produtos, cliente):
     return produtos
 
 
-# pega upload de arquivos
+# pega upload de arquivos e envia planilha pa model
 def upload_files(request):
     if request.method == 'POST':
         # Instansiando o formulário
@@ -119,4 +121,4 @@ def upload_files(request):
 def template_final(request):
     produtos = Produto.objects.all()
     print(produtos)
-    return render(request, 'template_final.html',{'produtos': produtos})
+    return render(request, 'template_final.html', {'produtos': produtos})
