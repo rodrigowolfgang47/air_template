@@ -122,5 +122,4 @@ def upload_files(request):
 @login_required()
 def template_final(request):
     produtos = Produto.objects.all()
-    print(produtos)
     return render(request, 'template_final.html', {'produtos': produtos})

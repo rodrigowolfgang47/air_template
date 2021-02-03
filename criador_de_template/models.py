@@ -9,12 +9,12 @@ class Planilha(models.Model):
 
 class Produto(models.Model):
     cliente = models.CharField(max_length=50, blank=True)
-    cod_da_peca = models.CharField(max_length=10, blank=True)
-    marca = models.CharField(max_length=20, blank=True)
-    descricao = models.CharField(max_length=150, blank=True)
-    aplicacao = models.CharField(max_length=150, blank=True)
+    cod_da_peca = models.CharField(max_length=10, blank=False)
+    marca = models.CharField(max_length=20, blank=False)
+    descricao = models.CharField(max_length=150, blank=True, null=True)
+    aplicacao = models.CharField(max_length=150, blank=True, null=True)
     preco = models.DecimalField(max_digits=6, decimal_places=2)
-    destaque = models.BooleanField(default=False)
+    destaque = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return f'{self.cliente} {self.cod_da_peca} {self.marca} {self.descricao} {self.aplicacao} {self.preco} {self.destaque}'
