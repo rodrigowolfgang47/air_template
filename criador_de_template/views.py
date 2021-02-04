@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 import mimetypes
 import pandas as pd
 from .forms import PlanilhaForm
-from .models import Produto
+from .models import Produto, Cliente
 
 
 # Create your views here.
@@ -82,7 +82,11 @@ def leitor_de_planilha(planilha):
 
 
 # Sobe para model a planilha lida
-def subir_para_model(lista_de_produtos, cliente):
+def subir_para_model(lista_de_produtos, nome_cliente):
+    cliente = Cliente.objects.create(
+        cliente=nome_cliente
+    )
+    cliente.save()
     for itens in lista_de_produtos:
         produtos = Produto.objects.create(
             cliente=cliente,
@@ -93,7 +97,7 @@ def subir_para_model(lista_de_produtos, cliente):
             preco=itens['Preço'],
             destaque=itens['Gostaria de destacar este produto?'],
         )
-        produtos.save()
+    return nome_cliente
 
 
 # pega upload de arquivos e envia planilha pa model
@@ -114,12 +118,11 @@ def upload_files(request):
 
             subir_para_model(dicionario_com_dados, cliente)
 
-            return redirect('template')
+            cliente = Cliente.objects.get(cliente=cliente)
+            produtos = cliente.produto_set.all()
+
+            return render(request, 'template_final.html', {'produtos': produtos})
     else:
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})
 
-@login_required()
-def template_final(request):
-    produtos = Produto.objects.all()
-    return render(request, 'template_final.html', {'produtos': produtos})

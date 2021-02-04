@@ -6,9 +6,19 @@ class Planilha(models.Model):
     documento = models.FileField(upload_to='media/%Y/%m/%d/')
     subido_as = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.cliente} {self.documento} {self.subido_as}'
+
+
+class Cliente(models.Model):
+    cliente = models.CharField(max_length=50, null=False, primary_key=True)
+
+    def __str__(self):
+        return f'{self.cliente}'
+
 
 class Produto(models.Model):
-    cliente = models.CharField(max_length=50, blank=True)
+    cliente = models.ForeignKey('Cliente', blank=True, on_delete=models.CASCADE)
     cod_da_peca = models.CharField(max_length=10, blank=False)
     marca = models.CharField(max_length=20, blank=False)
     descricao = models.CharField(max_length=150, blank=True, null=True)
