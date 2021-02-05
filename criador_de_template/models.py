@@ -12,9 +12,10 @@ class Planilha(models.Model):
 
 class Cliente(models.Model):
     cliente = models.CharField(max_length=50, null=False, primary_key=True)
+    criacao = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.cliente}'
+        return f'{self.cliente} {self.criacao}'
 
 
 class Produto(models.Model):

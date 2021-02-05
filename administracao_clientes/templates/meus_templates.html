@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang='pt-br'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meus templates</title>
+</head>
+<body>
+    <h1>
+        Meus Templates
+    </h1>
+    <p>Aqui vc pode gerenciar todos os seus templates</p>
+    <nav>
+        <form method="post" action="{% url 'sair' %}">
+            {% csrf_token %}
+            <button type="submit">
+                Sair
+            </button>
+        </form>
+    </nav>
+
+    <div>
+        <input type="text">
+    </div>
+
+    <div>
+        {% for cliente in clientes %}
+        <div>
+            <p>Cliente: {{ cliente.cliente }}</p>
+            <p>Criado em: {{ cliente.criacao }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <div>
+            Página {{ clientes.number }} de {{ clientes.paginator.num_pages }}
+        </div>
+        <span>
+            {% if clientes.has_previous  %}
+                <a href="?page=1">...</a>
+                <a href="?page={{ clientes.previous_page_number }}" >{{ clientes.previous_page_number }}</a>
+            {% endif %}
+        </span>
+
+        <span>
+            {{ clientes.number }}
+        </span>
+
+        <span>
+            {% if clientes.has_next %}
+                <a href="?page={{ clientes.next_page_number }}">{{ clientes.next_page_number }}</a>
+                <a href="?page={{ clientes.paginator.num_pages }}">...</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

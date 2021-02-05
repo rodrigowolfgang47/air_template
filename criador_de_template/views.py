@@ -125,4 +125,3 @@ def upload_files(request):
     else:
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})
-

@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from home import url as home_urls
 from registro import url as cadastro_urls
 from criador_de_template import url as cria_templates_urls
-from django.conf import settings
-from django.conf.urls.static import static
+from administracao_clientes import url as meus_template_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(home_urls), name='home'),
     path('', include(cadastro_urls), name='cadastro'),
-    path('', include(cria_templates_urls), name='cria-template')
+    path('', include(cria_templates_urls), name='cria-template'),
+    path('', include(meus_template_urls), name='meus_templates')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
