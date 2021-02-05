@@ -1,21 +1,39 @@
-<!doctype html>
-<html lang="pt-br">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seja Bem vindo</title>
-</head>
-<body>
-<form method="post">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Login</button>
-</form>
-    <p>
-        Ainda não possui cadastros <a href="{% url 'cadastro' %}">Cadstre-se</a>
-    </p>
-</body>
-</html>
+{% block content %} <link rel="stylesheet" href="{% static 'estilo/home_cadastro.css' %}"> {% endblock %}
+
+{% block title %}Seja Bem vindo{% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container-esquerdo">
+        <div class="container-menor-esquerdo">
+            <h3>SEJA VEM VINDO</h3>
+            <span>Ar_template® <p> v1.0</p></span>            
+        </div>
+    </div>
+    <div class="container-direito">
+        <div class="container-menor-direito">
+            <div class="login-cadastro-nome">
+                <h2>
+                    Login,
+                </h2>
+                <a href="{% url 'cadastro' %}" class="btn-login-cadastro">Cadstre-se</a>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit" class="btn-login-cadastro" >Login</button>
+            </form>
+            <p>
+                    Ainda não possui cadastros <a href="{% url 'cadastro' %}">Cadstre-se</a>
+            </p>
+        </div>
+    </div>
+    
+</main>
+
+
+{% endblock %}
