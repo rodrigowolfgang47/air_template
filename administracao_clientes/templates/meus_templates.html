@@ -31,6 +31,9 @@
             <p>Cliente: {{ cliente.cliente }}</p>
             <p>Criado em: {{ cliente.criacao }}</p>
         </div>
+        <div class="delete">
+            <a href="{% url 'deletar' cliente.cliente %}">Deletar</a>
+        </div>
         {% endfor %}
     </div>
 

@@ -27,5 +27,5 @@ urlpatterns = [
     path('', include(home_urls), name='home'),
     path('', include(cadastro_urls), name='cadastro'),
     path('', include(cria_templates_urls), name='cria-template'),
-    path('', include(meus_template_urls), name='meus_templates')
+    path('', include(meus_template_urls))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

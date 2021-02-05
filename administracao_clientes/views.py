@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from criador_de_template.models import Cliente
 from django.core.paginator import Paginator
 
@@ -14,3 +14,12 @@ def meus_templates(request):
     clientes = paginador.get_page(pagina)
 
     return render(request, 'meus_templates.html', {'clientes': clientes})
+
+def deletar_cliente(request, cliente):
+    cliente_delete = get_object_or_404(Cliente, pk=cliente)
+
+    if request.method == 'POST':
+        cliente_delete.delete()
+        return redirect('meus_templates')
+    else:
+        return render(request, 'cliente_delete.html', {'cliente': cliente_delete})
