@@ -85,7 +85,7 @@ h2{
 form{
     display: flex;
     flex-flow: column;
-    height: 60%;
+    height: 50%;
     justify-content: space-around;
     align-items: center;
     width: 100%;
@@ -97,4 +97,22 @@ input{
     background-color: #e4e4e4;
     border: none;
     border-radius: 7px;
+    padding-left: 8px;
+}
+
+.texto-final{
+    text-align: center;
+}
+
+.texto-final a{
+    color: #64A0E6;
+}
+
+.form-de-cadastro{
+    height: 80%;
+}
+
+ul {
+    font-size: 10px;
+    display: flex;
 }

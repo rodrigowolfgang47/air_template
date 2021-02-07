@@ -1,13 +1,14 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+#from django.contrib.auth.forms import AuthenticationForm
+from .forms import MeuAutoForm
 
 
 # Create your views here.
 
 def home(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = MeuAutoForm(data=request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
@@ -19,5 +20,5 @@ def home(request):
                     return redirect('cria-template')
     else:
         # Se o usuário não estiver logado ele rotorna uma instancia do form vazio
-        form = AuthenticationForm()
+        form = MeuAutoForm()
     return render(request, "index.html", {'form': form})

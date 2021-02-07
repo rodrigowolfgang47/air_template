@@ -1,32 +1,49 @@
-<!doctype html>
-<html lang="pt-br">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        Cadastre-se
-    </h1>
-    <form method="post">{% csrf_token %}
+{% block content %} <link rel="stylesheet" href="{% static 'estilo/home_cadastro.css' %}"> {% endblock %}
 
-        {% for field in form %}
-            <p>
-                {{field.label_tag}}
-                {{field}}
-                {% if field.help_text %}
-                    {{ field.help_text }}
-                {% endif %}
-                {% for error in field.errors %}
-                    {{ error }}
+{% block title %}Cadastre-se{% endblock %}
+
+{% block main %}
+
+<main>
+    <div class="container-esquerdo">
+        <div class="container-menor-esquerdo">
+            <h3>CADAS-<br>TRO</h3>
+            <span>Ar_template® <p> v1.0</p></span>            
+        </div>
+    </div>
+    <div class="container-direito">
+        <div class="container-menor-direito">
+            <div class="login-cadastro-nome">
+                <h2>
+                    Cadastro,
+                </h2>
+                <a href="{% url 'home' %}" class="btn-login-cadastro">Login</a>
+            </div>
+            <form method="post" class="form-de-cadastro">
+                {% csrf_token %}
+
+                {% for field in form %}
+                        {{field.label_tag}}
+                        {{field}}
+                        <!--{% if field.help_text %}
+                            {{ field.help_text }}
+                        {% endif %}-->
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
                 {% endfor %}
+                <button type="submit" class="btn-login-cadastro" >Cadastrar-se</button>
+            </form>
+            <p class="texto-final">
+                    Já é cadastrado? entre aqui <a href="{% url 'home' %}">Entre aqui</a>
             </p>
-        {% endfor %}
-        <button type="submit">Cadastrar-se</button>
-    </form>
-</body>
-</html>
+        </div>
+    </div>
+    
+</main>
+
+
+{% endblock %}
