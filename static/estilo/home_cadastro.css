@@ -60,7 +60,7 @@ span p{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 h2{
