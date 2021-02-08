@@ -31,16 +31,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # DJANGO APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # MEUS APPS
     'home',
     'registro',
     'criador_de_template',
-    'administracao_clientes'
+    'administracao_clientes',
+
+    #APPS EXTERNOS
+    'django_feather',
 ]
 
 #configura o back-end para disparar e-mails de confirmações de cadastro

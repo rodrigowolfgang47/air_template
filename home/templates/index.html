@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load icon %}
 
 {% block content %} <link rel="stylesheet" href="{% static 'estilo/home_cadastro.css' %}"> {% endblock %}
 
@@ -24,7 +25,14 @@
             </div>
             <form method="post">
                 {% csrf_token %}
-                {{form}}
+                <div class="icon" >
+                    <i>{% icon "user" class="css-class" %}</i>
+                    {{form.username}} 
+                </div>
+                <div class="icon">
+                    <i>{% icon "key" class="css-class" %}</i>
+                    {{form.password}}
+                </div>
                 <button type="submit" class="btn-login-cadastro" >Login</button>
             </form>
             <p class="texto-final">
