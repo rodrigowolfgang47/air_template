@@ -37,15 +37,15 @@
                     <div class="primeiro-form">
                         <i>{% icon "user-check" class="css-class" %}</i>
                         {{form.first_name}}
-                        {% for error in field.errors %}
-                                {{ error }}
+                        {% for errors in field.errors %}
+                                {{ errors }}
                         {% endfor %} 
                     </div>
 
                     <div class="segundo-form">
                         {{form.last_name}}
-                        {% for error in field.errors %}
-                                {{ error }}
+                        {% for errors in field.errors %}
+                                {{ errors }}
                         {% endfor %}    
                     </div>
                     
@@ -53,30 +53,22 @@
                 <div class="icon">
                     <i>{% icon "mail" class="css-class" %}</i>
                     {{form.email}}
-                    {% for error in field.errors %}
-                            {{ error }}
+                    {% for errors in field.errors %}
+                            {{ errors }}
                     {% endfor %}
                 </div>
 
                 <div class="icon">
                     <i>{% icon "key" class="css-class" %}</i>
                     {{form.password1}}
-                    {% for error in field.errors %}
-                            {{ error }}
-                    {% endfor %}
-                </div>
-
-                <div class="icon">
-                    <i>{% icon "key" class="css-class" %}</i>
-                    {{form.password2}}
-                    {% for error in field.errors %}
-                            {{ error }}
+                    {% for errors in field.errors %}
+                            {{ errors }}
                     {% endfor %}
                 </div>
                 <button type="submit" class="btn-login-cadastro" >Cadastrar-se</button>
             </form>
             <p class="texto-final">
-                    Já é cadastrado? <a href="{% url 'home' %}">Entre aqui</a>
+                    Já é cadastrado? entre aqui <a href="{% url 'home' %}">Entre aqui</a>
             </p>
         </div>
     </div>
