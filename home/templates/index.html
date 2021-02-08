@@ -26,12 +26,34 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="icon" >
-                    <i>{% icon "user" class="css-class" %}</i>
-                    {{form.username}} 
+                    <div class="campo">
+                        <i>{% icon "user" class="css-class" %}</i>
+                        {{form.username}}
+                    </div>
+                    <ul>
+                        {% for error in form.username.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
                 </div>
                 <div class="icon">
-                    <i>{% icon "key" class="css-class" %}</i>
-                    {{form.password}}
+                    <div class="campo">
+                        <i>{% icon "key" class="css-class" %}</i>
+                        {{form.password}}
+                    </div>
+                    <ul>
+                        {% for error in form.password.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
                 </div>
                 <button type="submit" class="btn-login-cadastro" >Login</button>
             </form>

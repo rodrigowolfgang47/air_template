@@ -26,45 +26,101 @@
             <form method="post" class="form-de-cadastro">
                 {% csrf_token %}
                 <div class="icon">
-                    <i>{% icon "user" class="css-class" %}</i>
-                    {{form.username}}
-                    {% for error in field.errors %}
-                            {{ error }}
-                    {% endfor %}
-                </div>
-                <div class="icon">
-                    
-                    <div class="primeiro-form">
-                        <i>{% icon "user-check" class="css-class" %}</i>
-                        {{form.first_name}}
-                        {% for errors in field.errors %}
-                                {{ errors }}
+                    <div class="campo">
+                        <i>{% icon "user" class="css-class" %}</i>
+                        {{form.username}}
+                    </div>
+                    <ul>
+                        {% for error in form.username.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
                         {% endfor %} 
+                    </ul>
+                </div>
+                <div class="icon-dois-itens">
+                    <div class="primeiro-form">
+                        <div class="campo">
+                            <i>{% icon "user-check" class="css-class" %}</i>
+                            {{form.first_name}}
+                        </div>
+                        <ul>
+                            {% for error in form.first_name.errors %}
+                                {% if error %}
+                                    <li>
+                                        {{ error }}
+                                    </li>
+                                {% endif %}
+                            {% endfor %} 
+                        </ul> 
                     </div>
 
                     <div class="segundo-form">
-                        {{form.last_name}}
-                        {% for errors in field.errors %}
-                                {{ errors }}
-                        {% endfor %}    
+                        <div class="campo">
+                            {{form.last_name}}
+                        </div>
+                        <ul>
+                            {% for error in form.last_name.errors %}
+                                {% if error %}
+                                    <li>
+                                        {{ error }}
+                                    </li>
+                                {% endif %}
+                            {% endfor %} 
+                        </ul>
                     </div>
                     
                 </div>
                 <div class="icon">
-                    <i>{% icon "mail" class="css-class" %}</i>
-                    {{form.email}}
-                    {% for errors in field.errors %}
-                            {{ errors }}
-                    {% endfor %}
+                    <div class="campo">
+                        <i>{% icon "mail" class="css-class" %}</i>
+                        {{form.email}}
+                    </div>
+                    <ul>
+                        {% for error in form.email.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul> 
                 </div>
 
                 <div class="icon">
-                    <i>{% icon "key" class="css-class" %}</i>
-                    {{form.password1}}
-                    {% for errors in field.errors %}
-                            {{ errors }}
-                    {% endfor %}
+                    <div class="campo">
+                        <i>{% icon "key" class="css-class" %}</i>
+                        {{form.password1}}
+                    </div>
+                    <ul>
+                        {% for error in form.password1.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
                 </div>
+
+                <div class="icon">
+                    <div class="campo">
+                        <i>{% icon "key" class="css-class" %}</i>
+                        {{form.password2}}
+                    </div>
+                    <ul>
+                        {% for error in form.password2.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
+                </div>
+
                 <button type="submit" class="btn-login-cadastro" >Cadastrar-se</button>
             </form>
             <p class="texto-final">

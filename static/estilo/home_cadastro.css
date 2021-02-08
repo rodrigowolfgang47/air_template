@@ -126,8 +126,31 @@ ul {
 .icon{
     display: flex;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
+    flex-direction: column;
+}
+
+.icon-dois-itens{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    position: relative;
+}
+
+.campo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.icon ul li{
+    font-size: 11px;
+    margin-top: 12px;
+    color: rgb(226, 17, 17);
+    font-weight: 550;
+    justify-self: flex-start;
+    margin-right: 20px;
 }
 
 .icon i {
@@ -136,6 +159,14 @@ ul {
     border-right: 1px solid #b2b2b2;
     padding-right: 10px;
 }
+
+.icon-dois-itens i {
+    position: absolute;
+    margin-left: 10px;
+    border-right: 1px solid #b2b2b2;
+    padding-right: 10px;
+}
+
 
 svg {
     stroke: #64A0E6;
