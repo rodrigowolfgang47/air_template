@@ -85,42 +85,43 @@
                         Tudo pronto? Agora é só clicar no botão criar layout
                     </h4>
                     <div class="container-form">
-    
-                        <div class="icon">
-                            <div class="campo">
-                                <i class="icons">{% icon "users" class="css-class" %}</i>
-                                {{form.cliente}}
+                        <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
+                            {% csrf_token %}
+                            <div class="icon">
+                                <div class="campo">
+                                    <i class="icons">{% icon "users" class="css-class" %}</i>
+                                    {{form.cliente}}
+                                </div>
+                                <ul>
+                                    {% for error in form.cliete.errors %}
+                                        {% if error %}
+                                            <li>
+                                                {{ error }}
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %} 
+                                </ul>
                             </div>
-                            <ul>
-                                {% for error in form.cliete.errors %}
-                                    {% if error %}
-                                        <li>
-                                            {{ error }}
-                                        </li>
-                                    {% endif %}
-                                {% endfor %} 
-                            </ul>
-                        </div>
 
-                        <div class="icon">
-                            <div class="campo">
-                                {{form.documento}}
+                            <div class="icon">
+                                <div class="campo">
+                                    {{form.documento}}
+                                </div>
+                                <ul>
+                                    {% for error in form.documento.errors %}
+                                        {% if error %}
+                                            <li>
+                                                {{ error }}
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %} 
+                                </ul>
                             </div>
-                            <ul>
-                                {% for error in form.documento.errors %}
-                                    {% if error %}
-                                        <li>
-                                            {{ error }}
-                                        </li>
-                                    {% endif %}
-                                {% endfor %} 
-                            </ul>
-                        </div>
 
-                        <button type="submit" class="btn-criar-layout">
-                            Crie seu layout
-                        </button>
-
+                            <button type="submit" class="btn-criar-layout">
+                                Crie seu layout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

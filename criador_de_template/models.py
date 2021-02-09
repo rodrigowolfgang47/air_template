@@ -10,7 +10,7 @@ class Planilha(models.Model):
 
 
 class Cliente(models.Model):
-    cliente = models.CharField(max_length=50, null=False, primary_key=True)
+    cliente = models.CharField(max_length=50, null=False, primary_key=True, blank=False)
     criacao = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Cliente(models.Model):
 
 
 class Produto(models.Model):
-    cliente = models.ForeignKey('Cliente', blank=True, on_delete=models.CASCADE)
+    cliente = models.ForeignKey('Cliente', blank=False, on_delete=models.CASCADE, null=False)
     cod_da_peca = models.CharField(max_length=10, blank=False)
     marca = models.CharField(max_length=20, blank=False)
     descricao = models.CharField(max_length=150, blank=True, null=True)
@@ -27,4 +27,4 @@ class Produto(models.Model):
     destaque = models.BooleanField(default=False, null=True)
 
     def __str__(self):
-        return f'{self.cliente} {self.cod_da_peca} {self.marca} {self.descricao} {self.aplicacao} {self.preco} {self.destaque}'
+        return f'{self.cliente} {self.cod_da_peca}'
