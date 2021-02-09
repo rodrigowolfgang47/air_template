@@ -49,43 +49,52 @@
                 </form>
             </div>
 
-            <div>
+            <div class="pesquisa">
+                <i>{% icon "search" class="css-class" %}</i>
                 <input type="text">
             </div>
 
-            <div>
+            <div class="clientes">
                 {% for cliente in clientes %}
-                <div>
-                    <p>Cliente: {{ cliente.cliente }}</p>
+                <div class="clientes-itens">
+                    <p><i>{% icon "users" class="css-class" %}</i>Cliente: <b> {{ cliente.cliente }}</b> </p>
                     <p>Criado em: {{ cliente.criacao }}</p>
-                </div>
-                <div class="delete">
-                    <a href="{% url 'deletar' cliente.cliente %}">Deletar</a>
+                    <div class="delete">
+                        <a href="{% url 'deletar' cliente.cliente %}" class="btn-red">Deletar</a>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
         
-            <div>
+            <div class="paginador">
                 <div>
                     Página {{ clientes.number }} de {{ clientes.paginator.num_pages }}
                 </div>
-                <span>
+                <div>
+                    
                     {% if clientes.has_previous  %}
+                    <span>
                         <a href="?page=1">...</a>
+                    </span>
+                    <span>
                         <a href="?page={{ clientes.previous_page_number }}" >{{ clientes.previous_page_number }}</a>
-                    {% endif %}
-                </span>
-        
-                <span>
-                    {{ clientes.number }}
-                </span>
-        
-                <span>
+                    </span>
+                    {% endif %} 
+            
+                    <span class="nesta-pagina">
+                        {{ clientes.number }}
+                    </span>
+            
+                    
                     {% if clientes.has_next %}
+                    <span>
                         <a href="?page={{ clientes.next_page_number }}">{{ clientes.next_page_number }}</a>
+                    </span>
+                    <span>
                         <a href="?page={{ clientes.paginator.num_pages }}">...</a>
+                    </span>
                     {% endif %}
-                </span>
+                </div>
             </div>
 
         </div>

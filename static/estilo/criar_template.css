@@ -301,3 +301,101 @@ input:hover{
     height: 40px;
     width: 40px;
 }
+
+.clientes{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.clientes-itens{
+    width: 30%;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #64A0E6;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.clientes-itens i svg{
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    stroke: #64A0E6;
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.clientes-itens p {
+    display: flex;
+    align-items: center;
+}
+
+.clientes-itens p b {
+    color: #64A0E6;
+    margin-left: 5px;
+}
+
+.clientes-itens .btn-red{
+    width: 80px;
+    height: 35px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.pesquisa{
+    display: flex;
+    align-self: flex-start;
+    position: relative;
+    align-items: center;
+}
+
+.pesquisa i{
+    position: absolute;
+}
+
+.pesquisa i svg{
+    stroke: #64A0E6;
+    margin-left: 10px;
+}
+
+input .pesquisa{
+    padding-left: 10px;
+}
+
+.paginador{
+    display: flex;
+    flex-direction: column;
+}
+
+.paginador div{
+    display: flex;
+    justify-content: space-around;
+}
+
+.paginador div span{
+    height: 40px;
+    width: 40px;
+    border:1px solid #64A0E6;
+    border-radius: 7px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-weight: 700;
+    
+}
+
+span a {
+    text-decoration: none;
+    color: #64A0E6;
+}
+
+.nesta-pagina{
+    font-weight: 700;
+    color: white;
+    background-color: #64A0E6;
+    
+}
