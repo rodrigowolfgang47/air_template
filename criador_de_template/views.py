@@ -6,6 +6,7 @@ import mimetypes
 import pandas as pd
 from .forms import PlanilhaForm
 from .models import Produto, Cliente
+from django.contrib.auth.models import User
 
 
 # Create your views here.

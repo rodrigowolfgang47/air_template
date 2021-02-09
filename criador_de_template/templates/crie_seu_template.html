@@ -1,36 +1,111 @@
-<!doctype html>
-<html lang="pt-br">
+{% extends 'base.html' %}
+{% load static %}
+{% load icon %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crie seu template</title>
-</head>
-<body>
-    <h1>
-        Crie seu template
-    </h1>
-    <nav>
-        <form method="post" action="{% url 'sair' %}">
-            {% csrf_token %}
-            <button type="submit">
-                Sair
-            </button>
-        </form>
-    </nav>
+{% block content %} <link rel="stylesheet" href="{% static 'estilo/criar_template.css' %}"> {% endblock %}
 
-    <form action="{% url 'download' %}">
-        <button type="submit">
-        Download aqui
-    </button>
-    </form>
+{% block title %}Crie seu template{% endblock %}
 
-    <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Crie seu Layout</button>
-    </form>
-</body>
-</html>
+{% block main %}
+
+<main>
+    <div class="container-esquerdo">
+        <div class="container-menor-esquerdo">
+            <div>
+                <h3>Olá {{ user.username.capitalize }} !</h3>
+            
+                <nav>
+                    <ul>
+                        <li id="nesta-pagina">
+                            <i>{% icon "layout" class="css-class" %}</i>
+                            Crie seu template
+                        </li>
+                        <li>
+                            <i>{% icon "list" class="css-class" %}</i>
+                            <a href="{% url 'meus_templates' %}">Meus templates</a>
+                        </li>
+        
+                    </ul>
+                </nav>
+            </div>
+
+            <span>Ar_template® <p> v1.0</p></span>            
+        </div>
+    </div>
+
+    
+    <div class="container-direito">
+
+        <div class="container-menor-direito">
+
+            <div class="login-cadastro-nome">
+                <h2>
+                    Crie seu template,
+                    <p>São apenas alguns passos</p>
+                </h2>
+                <form  method="post" action="{% url 'sair' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-red">
+                        <i>{% icon "log-out" class="css-class" %}</i>
+                        Sair
+                    </button>
+                </form>
+            </div>
+
+            <div class="instrucoes">
+                
+                <div class="content" >
+                    <i>{% icon "file-plus" class="css-class" %}</i>
+                    <h4>
+                        Faça o download do modele de planilha
+                    </h4>
+                    <form action="{% url 'download' %}">
+                        <button type="submit" class="btn-border">
+                            Download aqui
+                        </button>
+                    </form>
+                </div>
+
+                <div class="content" >
+                    <i>{% icon "video" class="css-class" %}</i>
+                    <h4>
+                        Assista o video e saiba como preencher sua planilha
+                    </h4>
+                    <a href="#" class="btn-border">
+                        Assista agora
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="instrucoes">
+                <div class="content-2" >
+                    <i>{% icon "send" class="css-class" %}</i>
+                    <h4>
+                        Tudo pronto? Agora é só clicar no botão criar layout
+                    </h4>
+                    <div class="icon">
+                        <div class="campo">
+                            <i class="icons">{% icon "users" class="css-class" %}</i>
+                            {{form.cliente}}
+                        </div>
+                        <ul>
+                            {% for error in form.cliete.errors %}
+                                {% if error %}
+                                    <li>
+                                        {{ error }}
+                                    </li>
+                                {% endif %}
+                            {% endfor %} 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</main>
+
+
+{% endblock %}

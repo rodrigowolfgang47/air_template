@@ -1,0 +1,301 @@
+.container-esquerdo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-esquerdo{
+    background-color: #64A0E6;
+    width: 20%;
+}
+
+h3{
+    font-size: 100%;
+    color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+}
+
+.container-menor-esquerdo{
+    height: 600px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 2s ease-in-out;
+}
+
+span{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+}
+
+span p{
+    font-size: 9px;
+    margin-left: 10px;
+    color: white;
+}
+
+nav{
+    font-size: 14px;
+    color: white;
+}
+
+#nesta-pagina{
+    font-size: 14px;
+    color: white;
+    font-weight: 700;
+}
+
+nav ul{
+    list-style: none;
+    
+}
+
+nav ul li{
+    display: flex;
+    align-items: center;    
+    margin-bottom: 10px;
+}
+
+ul a{
+    text-decoration: none;
+    color: white;
+}
+
+svg {
+    stroke: #ffffff;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.container-menor-esquerdo{
+    height: 600px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 2s ease-in-out;
+}
+
+.container-direito{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-menor-direito{
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+    height: 600px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-cadastro-nome{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2{
+    font-size: 40px;
+    color: #64A0E6;
+}
+
+h2 p{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-red{
+    height: 45px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #DF4343;
+    font-weight: 700;
+    border-radius: 7px;
+    color: white;
+    border: none;
+}
+
+.instrucoes{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    max-width: 300px;
+}
+
+.instrucoes div h4 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight:400
+}
+
+.instrucoes div i{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #64A0E6;
+}
+.instrucoes div i svg{
+    width: 45px;
+    height: 45px;
+    margin-bottom: 20px;
+    stroke: #64A0E6;
+}
+
+.content form {
+    max-width: 130px;
+}
+
+.btn-border{
+    height: 45px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    font-weight: 700;
+    border-radius: 7px;
+    color: #64A0E6;
+    border: 1px solid #64A0E6;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.content-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #64a0e6;
+    border-radius: 7px;
+}
+
+ .instrucoes .content-2 i svg{
+    width: 40px;
+    height: 40px;
+    stroke: #64A0E6;
+    margin: 0px;
+}
+
+.instrucoes .content-2 i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    border-bottom: 0px;
+}
+
+.instrucoes .content-2 h4{
+    display: flex;
+    justify-content: flex-start;
+    width: 70%;
+    height: 147px;
+    margin: 0px 20px;
+    text-align: left;
+    border-bottom: 0px;
+    border-right: 2px solid #64A0E6;
+    align-items: center;
+}
+
+.instrucoes .content-2 form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: space-between;
+    height: 158px;
+}
+
+input{
+    width: 100%;
+    height: 45px;
+    background-color: #d1ecfa;
+    border: 1px solid #dcdce6;
+    border-radius: 7px;
+    padding-left: 55px;
+    transition: 1s ease-in-out;
+    transition: border , 0.4s;
+}
+
+input:hover{
+    border: 1px solid #64A0E6;
+}
+
+.btn-login-cadastro{
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #64A0E6;
+    font-weight: 700;
+    border-radius: 7px;
+    color: white;
+    border: none;
+}
+
+#id_documento{
+    background-color: #fff;
+    border: none;
+    padding: 0px;
+    height: 30px;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+.icon{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    position: relative;
+    flex-direction: column;
+}
+
+.campo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.icons {
+    position: absolute;
+    margin-left: 10px;
+    border-right: 1px solid #b2b2b2;
+    padding-right: 10px;
+    margin-bottom: 0px;
+    z-index: 1;
+}
