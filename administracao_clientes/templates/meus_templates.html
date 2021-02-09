@@ -74,7 +74,7 @@
                     
                     {% if clientes.has_previous  %}
                     <span>
-                        <a href="?page=1">...</a>
+                        <a href="?page=1"> <<</a>
                     </span>
                     <span>
                         <a href="?page={{ clientes.previous_page_number }}" >{{ clientes.previous_page_number }}</a>
@@ -91,7 +91,7 @@
                         <a href="?page={{ clientes.next_page_number }}">{{ clientes.next_page_number }}</a>
                     </span>
                     <span>
-                        <a href="?page={{ clientes.paginator.num_pages }}">...</a>
+                        <a href="?page={{ clientes.paginator.num_pages }}">>></a>
                     </span>
                     {% endif %}
                 </div>

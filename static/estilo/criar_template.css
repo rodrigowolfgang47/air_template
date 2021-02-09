@@ -399,3 +399,34 @@ span a {
     background-color: #64A0E6;
     
 }
+
+.deletando-cliente{
+    align-self: flex-start;
+    justify-self: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+
+.cliente-delete{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #64A0E6;
+    border-radius: 7px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.cliente-delete h4{
+    font-size: 22px;
+}
+
+.cliente-delete .btn-red{
+    margin-top: 20px;
+}
+
+.complemento{
+    height: 33%;
+}
