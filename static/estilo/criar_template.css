@@ -8,7 +8,7 @@
 
 .container-esquerdo{
     background-color: #64A0E6;
-    width: 20%;
+    width: 15vw;
 }
 
 h3{
@@ -20,8 +20,7 @@ h3{
 }
 
 .container-menor-esquerdo{
-    height: 600px;
-    width: 70%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,10 +29,6 @@ h3{
 }
 
 span{
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
     font-size: 12px;
     color: white;
 }
@@ -77,18 +72,8 @@ svg {
     margin-right: 10px;
 }
 
-.container-menor-esquerdo{
-    height: 600px;
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    transition: 2s ease-in-out;
-}
-
 .container-direito{
-    width: 80%;
+    width: 84%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +84,6 @@ svg {
     display: flex;
     width: 75%;
     flex-direction: column;
-    height: 600px;
     justify-content: space-between;
     align-items: center;
 }
@@ -153,12 +137,13 @@ h2 p{
 }
 
 .instrucoes div h4 {
-    width: 50%;
+    width: 40;
     display: flex;
     justify-content: center;
     text-align: center;
     margin-bottom: 20px;
-    font-weight:400
+    font-weight:400;
+    font-size: 15px;
 }
 
 .instrucoes div i{
@@ -198,7 +183,7 @@ h2 p{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 70%;
     height: 200px;
     border: 1px solid #64a0e6;
     border-radius: 7px;
@@ -206,8 +191,8 @@ h2 p{
 }
 
  .instrucoes .content-2 i svg{
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     stroke: #64A0E6;
     margin: 0px;
 }
@@ -224,13 +209,15 @@ h2 p{
 .instrucoes .content-2 h4{
     display: flex;
     justify-content: flex-start;
-    width: 70%;
+    width: 30%;
     height: 147px;
     margin: 0px 20px;
     text-align: left;
     border-bottom: 0px;
     border-right: 2px solid #64A0E6;
     align-items: center;
+    font-size: 16px;
+    padding-right: 40px;
 }
 
 .instrucoes .content-2 form{
@@ -247,7 +234,7 @@ input{
     background-color: #d1ecfa;
     border: 1px solid #dcdce6;
     border-radius: 7px;
-    padding-left: 55px;
+    padding-left: 4vw;
     transition: 1s ease-in-out;
     transition: border , 0.4s;
 }
@@ -305,7 +292,12 @@ input:hover{
 .container-form{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     justify-content: space-between;
     height: 150px;
+}
+
+#icon-maior svg{
+    height: 40px;
+    width: 40px;
 }

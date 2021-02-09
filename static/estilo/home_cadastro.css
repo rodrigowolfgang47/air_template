@@ -22,27 +22,6 @@ h3{
     justify-content: center;
 }
 
-span{
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-size: 18px;
-}
-
-span p{
-    font-size: 14px;
-    margin-left: 10px;
-}
-
-.container-menor-esquerdo, .container-menor-direito{
-    height: 600px;
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .login-cadastro-nome{
     width: 100%;
