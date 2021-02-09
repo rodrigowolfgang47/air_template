@@ -84,20 +84,43 @@
                     <h4>
                         Tudo pronto? Agora é só clicar no botão criar layout
                     </h4>
-                    <div class="icon">
-                        <div class="campo">
-                            <i class="icons">{% icon "users" class="css-class" %}</i>
-                            {{form.cliente}}
+                    <div class="container-form">
+    
+                        <div class="icon">
+                            <div class="campo">
+                                <i class="icons">{% icon "users" class="css-class" %}</i>
+                                {{form.cliente}}
+                            </div>
+                            <ul>
+                                {% for error in form.cliete.errors %}
+                                    {% if error %}
+                                        <li>
+                                            {{ error }}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %} 
+                            </ul>
                         </div>
-                        <ul>
-                            {% for error in form.cliete.errors %}
-                                {% if error %}
-                                    <li>
-                                        {{ error }}
-                                    </li>
-                                {% endif %}
-                            {% endfor %} 
-                        </ul>
+
+                        <div class="icon">
+                            <div class="campo">
+                                {{form.documento}}
+                            </div>
+                            <ul>
+                                {% for error in form.documento.errors %}
+                                    {% if error %}
+                                        <li>
+                                            {{ error }}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %} 
+                            </ul>
+                        </div>
+
+                        <button type="submit" class="btn-criar-layout">
+                            Crie seu layout
+                        </button>
+
                     </div>
                 </div>
             </div>
