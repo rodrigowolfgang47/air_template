@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+class Usuario(User):
+    pass
 
 class Planilha(models.Model):
     cliente = models.CharField(max_length=50, blank=True)
@@ -10,6 +14,7 @@ class Planilha(models.Model):
 
 
 class Cliente(models.Model):
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     cliente = models.CharField(max_length=50, null=False, primary_key=True, blank=False)
     criacao = models.DateTimeField(auto_now=True)
 
