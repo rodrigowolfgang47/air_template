@@ -425,8 +425,29 @@ span a {
 
 .cliente-delete .btn-red{
     margin-top: 20px;
+    margin-right: 20px;
 }
 
 .complemento{
     height: 33%;
+}
+
+.cancelar {
+    display: flex;
+    align-items: center;
+}
+
+.cancelar a{
+    height: 45px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #dadada;
+    font-weight: 700;
+    border-radius: 7px;
+    color: #2b2b2b;
+    border: none;
+    margin-top: 20px;
 }

@@ -54,9 +54,12 @@
                     <h4>
                         Tem certeza que deseja deletar {{cliente.cliente}}
                     </h4>
-                    <button type="submit" class="btn-red" >
-                        Deletar
-                    </button>
+                    <div class="cancelar">
+                        <button type="submit" class="btn-red" >
+                            Deletar
+                        </button>
+                        <a href="{% url 'meus_templates' %}">Cancelar</a>
+                    </div>
                 </form>
             </div>
             <div class="complemento">
