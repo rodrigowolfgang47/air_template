@@ -75,6 +75,7 @@ input:hover{
 
 .texto-final{
     text-align: center;
+    align-self: center;
 }
 
 .texto-final a{

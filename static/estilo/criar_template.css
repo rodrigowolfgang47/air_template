@@ -82,7 +82,7 @@ svg {
 
 .container-menor-direito{
     display: flex;
-    width: 75%;
+    width: 81%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -306,7 +306,7 @@ input:hover{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    min-height: 400px;
+    min-height: 350px;
 }
 
 .clientes-itens{
@@ -316,8 +316,8 @@ input:hover{
     flex-direction: column;
     border: 1px solid #64A0E6;
     border-radius: 7px;
-    padding: 20px;
-    max-height: 170px;
+    padding: 20px 20px;
+    max-height: 155px;
 }
 
 .clientes-itens i svg{
@@ -361,6 +361,7 @@ input:hover{
     position: relative;
     align-items: center;
     width: 40%;
+    margin: 10px 0px 10px 15px;
 }
 
 
