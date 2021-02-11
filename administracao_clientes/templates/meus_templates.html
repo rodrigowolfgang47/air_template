@@ -49,10 +49,10 @@
                 </form>
             </div>
 
-            <div class="pesquisa">
-                <i>{% icon "search" class="css-class" %}</i>
-                <input type="text">
-            </div>
+            <form method="GET" class="pesquisa">
+                <button type="submit"><i>{% icon "search" class="css-class" %}</i></button>
+                <input id="campodepesquisa" type="search" name="pesquisa" placeholder="Busque por cliente">
+            </form>
 
             <div class="clientes">
                 {% for cliente in clientes %}
@@ -60,7 +60,7 @@
                     <p><i>{% icon "users" class="css-class" %}</i>Cliente: <b> {{ cliente.cliente }}</b> </p>
                     <p>Criado em: {{ cliente.criacao }}</p>
                     <div class="delete">
-                        <a href="{% url 'deletar' cliente.cliente %}" class="btn-red">Deletar</a>
+                        <a href="{% url 'deletar' cliente.cliente %}" class="btn-red"><i>{% icon "trash-2" class="css-class" %}</i> Deletar</a>
                     </div>
                 </div>
                 {% endfor %}
