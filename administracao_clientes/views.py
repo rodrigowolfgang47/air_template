@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from criador_de_template.models import Cliente
+from criador_de_template.models import Cliente, Usuario
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def meus_templates(request):
-    lista_de_clientes = Cliente.objects.all().order_by('-criacao')
+
+    usuario = Usuario.objects.get(username=request.user)
+    lista_de_clientes = usuario.cliente_set.all()
 
     paginador = Paginator(lista_de_clientes, 6)
     pagina = request.GET.get('page')

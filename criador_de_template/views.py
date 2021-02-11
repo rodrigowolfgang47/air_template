@@ -7,6 +7,7 @@ import pandas as pd
 from .forms import PlanilhaForm
 from .models import Produto, Cliente
 from django.contrib.auth.models import User
+from .models import Usuario
 
 
 # Create your views here.
@@ -83,8 +84,9 @@ def leitor_de_planilha(planilha):
 
 
 # Sobe para model a planilha lida
-def subir_para_model(lista_de_produtos, nome_cliente):
+def subir_para_model(request ,lista_de_produtos, nome_cliente):
     cliente = Cliente.objects.create(
+        usuario=request.user,
         cliente=nome_cliente
     )
     cliente.save()
@@ -117,7 +119,7 @@ def upload_files(request):
 
             cliente = request.POST.get('cliente')
 
-            subir_para_model(dicionario_com_dados, cliente)
+            subir_para_model(request, dicionario_com_dados, cliente)
 
             cliente = Cliente.objects.get(cliente=cliente)
             produtos = cliente.produto_set.all()
