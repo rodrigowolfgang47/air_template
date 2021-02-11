@@ -486,3 +486,16 @@ span a {
     background: none;
     border: none;
 }
+
+.filtro .btn-border{
+    margin-left: 10px;
+    background: #fff;
+    transition: background, 1s;
+    width: 100px;
+}
+
+.filtro .btn-border:hover{
+    background-color: #DF4343;
+    color: #fff;
+    border-color: #DF4343;
+}
