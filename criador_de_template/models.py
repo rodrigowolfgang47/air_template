@@ -3,7 +3,37 @@ from django.contrib.auth.models import AbstractUser
 from air_template.settings import AUTH_USER_MODEL
 
 class Usuario(AbstractUser):
-    pass
+    UF_CHOICES = (
+    ('AC', 'Acre'), 
+    ('AL', 'Alagoas'),
+    ('AP', 'Amapá'),
+    ('BA', 'Bahia'),
+    ('CE', 'Ceará'),
+    ('DF', 'Distrito Federal'),
+    ('ES', 'Espírito Santo'),
+    ('GO', 'Goiás'),
+    ('MA', 'Maranão'),
+    ('MG', 'Minas Gerais'),
+    ('MS', 'Mato Grosso do Sul'),
+    ('MT', 'Mato Grosso'),
+    ('PA', 'Pará'),
+    ('PB', 'Paraíba'),
+    ('PE', 'Pernanbuco'),
+    ('PI', 'Piauí'),
+    ('PR', 'Paraná'),
+    ('RJ', 'Rio de Janeiro'),
+    ('RN', 'Rio Grande do Norte'),
+    ('RO', 'Rondônia'),
+    ('RR', 'Roraima'),
+    ('RS', 'Rio Grande do Sul'),
+    ('SC', 'Santa Catarina'),
+    ('SE', 'Sergipe'),
+    ('SP', 'São Paulo'),
+    ('TO', 'Tocantins')
+    )
+
+    celular = models.CharField(max_length=11)
+    estado = models.CharField(max_length=20, choices=UF_CHOICES)
 
 class Planilha(models.Model):
     cliente = models.CharField(max_length=100, blank=True)
