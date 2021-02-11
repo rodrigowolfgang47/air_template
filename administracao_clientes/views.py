@@ -42,3 +42,10 @@ def deletar_cliente(request, cliente):
         return redirect('meus_templates')
     else:
         return render(request, 'cliente_delete.html', {'cliente': cliente_delete})
+
+def meu_cliente(request, cliente):
+    
+    cliente = get_object_or_404(Cliente, pk=cliente)
+    produtos = cliente.produto_set.all()
+
+    return render(request, 'template_final.html', {'produtos': produtos})

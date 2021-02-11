@@ -65,7 +65,7 @@
             <div class="clientes">
                 {% for cliente in clientes %}
                 <div class="clientes-itens">
-                    <p><i>{% icon "users" class="css-class" %}</i>Cliente: <b> {{ cliente.cliente }}</b> </p>
+                    <p><i>{% icon "users" class="css-class" %}</i>Cliente: <b><a href="{% url 'meucliente' cliente.cliente %}"> {{ cliente.cliente }} </a></b> </p>
                     <p>Criado em: {{ cliente.criacao }}</p>
                     <div class="delete">
                         <a href="{% url 'deletar' cliente.cliente %}" class="btn-red"><i>{% icon "trash-2" class="css-class" %}</i> Deletar</a>

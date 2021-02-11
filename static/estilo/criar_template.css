@@ -335,8 +335,10 @@ input:hover{
 }
 
 .clientes-itens p b {
-    color: #64A0E6;
     margin-left: 5px;
+}
+.clientes-itens p b a{
+    color: #64A0E6;
 }
 
 .clientes-itens .btn-red{

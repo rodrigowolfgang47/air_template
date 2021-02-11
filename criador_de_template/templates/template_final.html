@@ -1,49 +1,51 @@
+{% extends 'base.html' %}
 {% load static %}
+{% load icon %}
 
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'estilo/base_template.css' %}">
-    <title>{{ produtos.0.cliente}}</title>
-</head>
-<body>
-        <main>
-            <div id="banner">
-                <img src="{% static 'img/Vector_img_branco.png' %}" alt="Imagem_do_produto">
-                <p>Banner</p>
-            </div>
+{% block content %} <link rel="stylesheet" href="{% static 'estilo/base_template.css' %}"> {% endblock %}
 
-            <div class="produto-content">
-                {% for produto in produtos %}
-                    <article class="caixa-produto">
-                        <div class="img-produto">
+{% block title %}{{ produtos.0.cliente}}{% endblock %}
+
+{% block main %}
+    <div class="voltar">
+        <a href="{% url 'templates' %}">Voltar</a>
+    </div>
+
+    <h2>{{ produtos.0.cliente.cliente}},</h2>
+    
+    <main>
+        <div id="banner">
+            <img src="{% static 'img/Vector_img_branco.png' %}" alt="Imagem_do_produto">
+            <p>Banner</p>
+        </div>
+
+        <div class="produto-content">
+            {% for produto in produtos %}
+                <article class="caixa-produto">
+                    <div class="img-produto">
+                        <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
+                    </div>
+
+                    <div class="preco">
+                        <p>R$ {{ produto.preco }}</p>
+                    </div>
+
+                    <div class="descricao">
+
+                        <div class="marca">
                             <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
                         </div>
 
-                        <div class="preco">
-                            <p>R$ {{ produto.preco }}</p>
+                        <div class="informacoes">
+                            <p class="codigo"> Cod: {{ produto.cod_da_peca }}</p>
+                            <p class="produto"> {{ produto.descricao }}</p>
+                            <p>{{ produto.aplicacao }}</p>
                         </div>
+                    </div>
 
-                        <div class="descricao">
+                </article>
+            {% endfor %}
+        </div>
 
-                            <div class="marca">
-                                <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
-                            </div>
-
-                            <div class="informacoes">
-                                <p class="codigo"> Cod: {{ produto.cod_da_peca }}</p>
-                                <p class="produto"> {{ produto.descricao }}</p>
-                                <p>{{ produto.aplicacao }}</p>
-                            </div>
-                        </div>
-
-                    </article>
-                {% endfor %}
-            </div>
-        </main>
-</body>
-</html>
+    </main>
+{% endblock %}

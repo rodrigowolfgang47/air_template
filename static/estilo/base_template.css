@@ -9,15 +9,19 @@
 }
 
 body{
-    background-color: #F4F4F4;
+    background-color: white;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
 }
 
 main{
     background-color: #ffffff;
     width: 100%;
+    height: 100%;
     max-width: 1185px;
     box-shadow: 0px 4px 12px 6px rgb(0 0 0 / 25%);
     margin: 40px 0px;
@@ -32,6 +36,7 @@ main{
     justify-content: center;
     align-items: center;
     margin-bottom: 85px;
+    width: 100%;
 }
 
 #banner p{
@@ -123,4 +128,56 @@ produto-content{
     margin-bottom: 5px;
 }
 
+.voltar{
+    margin: 40px;
+    margin-bottom: 0px;
+    display: flex;
+    border: 1px solid #64A0E5;
+    border-radius: 7px;
+    height: 45px;
+    width: 130px;
+    background: white;
+    transition: 0.5s;
+    color: #64A0E5;
+}
 
+.voltar:hover{
+    background: #64A0E5;
+    color: white;
+    stroke: #ffffff;
+}
+
+.voltar a {
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #64A0E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 7px;
+    height: 45px;
+    width: 130px;
+}
+
+.voltar a:hover{
+    color: #ffffff;
+}
+
+
+.voltar a svg{
+    margin-right: 5px;
+    stroke: #64A0E5;
+    transition: stroke, 1s;
+}
+
+h2{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 20px;
+    color: #64A0E5;
+    font-size: 45px;
+    width: 100%;
+    max-width: 1185px;
+}
