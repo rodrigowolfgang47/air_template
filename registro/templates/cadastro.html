@@ -94,6 +94,38 @@
 
                 <div class="icon">
                     <div class="campo">
+                        <i>{% icon "smartphone" class="css-class" %}</i>
+                        {{form.celular}}
+                    </div>
+                    <ul>
+                        {% for error in form.celular.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
+                </div>
+
+                <div class="icon">
+                    <div class="campo">
+                        <i>{% icon "map-pin" class="css-class" %}</i>
+                        {{form.estado}}
+                    </div>
+                    <ul>
+                        {% for error in form.estado.errors %}
+                            {% if error %}
+                                <li>
+                                    {{ error }}
+                                </li>
+                            {% endif %}
+                        {% endfor %} 
+                    </ul>
+                </div>
+
+                <div class="icon">
+                    <div class="campo">
                         <i>{% icon "key" class="css-class" %}</i>
                         {{form.password1}}
                     </div>
