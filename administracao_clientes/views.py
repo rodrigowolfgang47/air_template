@@ -8,15 +8,31 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def meus_templates(request):
 
-    usuario = Usuario.objects.get(username=request.user)
-    lista_de_clientes = usuario.cliente_set.all()
+    #busca aqui
+    termo_buscado = request.GET.get('pesquisa', None)
+    
+    if termo_buscado:
 
-    paginador = Paginator(lista_de_clientes, 6)
-    pagina = request.GET.get('page')
+        usuario = Usuario.objects.get(username=request.user)
 
-    clientes = paginador.get_page(pagina)
+        lista_de_clientes = usuario.cliente_set.filter(cliente__icontains=termo_buscado).order_by('-criacao')
 
-    return render(request, 'meus_templates.html', {'clientes': clientes})
+        paginador = Paginator(lista_de_clientes, 6)
+        pagina = request.GET.get('page')
+
+        clientes = paginador.get_page(pagina)
+        
+    else:
+        usuario = Usuario.objects.get(username=request.user)
+
+        lista_de_clientes = usuario.cliente_set.all().order_by('-criacao')
+
+        paginador = Paginator(lista_de_clientes, 6)
+        pagina = request.GET.get('page')
+
+        clientes = paginador.get_page(pagina)
+
+    return render(request, 'meus_templates.html', {'clientes': clientes, 'pesquisa': termo_buscado})
 
 def deletar_cliente(request, cliente):
     cliente_delete = get_object_or_404(Cliente, pk=cliente)

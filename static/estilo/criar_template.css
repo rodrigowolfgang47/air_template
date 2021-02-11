@@ -366,7 +366,8 @@ input:hover{
 
 input#campodepesquisa{
     padding-left: 2.5vw;
-    width: 40%;
+    width: 50%;
+    padding-right: 10px;
 }
 
 #campodepesquisa:focus{
