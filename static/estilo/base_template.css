@@ -175,11 +175,8 @@ produto-content{
 h2{
     display: flex;
     justify-content: flex-start;
-    margin: 0px 20px;
     color: #64A0E5;
     font-size: 45px;
-    width: 100%;
-    max-width: 1185px;
 }
 
 .contato{
@@ -227,8 +224,47 @@ h6{
     margin-right: 7px;
     border-right: 1px solid white;
     padding-right: 7px;
+    height: 30px;
+    width: 30px;
 }
 
 .contato b{
     color: white;
+}
+
+.tilulo-share{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1185px;
+    align-items: center;
+    margin: 30px 0px 0px 0px;
+}
+
+#whatsapp{
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 1s;
+}
+
+
+
+.whatsapp{
+    padding: 15px;
+    width: 100%;
+    max-width: 245px;
+    border-radius:7px;
+    display: flex;
+    align-items: center;
+    transition: 1s;
+    background-color: #64A0E5;
+}
+
+.whatsapp svg{
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+    margin-right: 10px;
 }
