@@ -181,3 +181,18 @@ h2{
     width: 100%;
     max-width: 1185px;
 }
+
+.contato{
+    height: 300px;
+    width: 100%;
+    background: #64A0E5;
+    display: flex;
+    justify-content: center;
+}
+
+h6{
+    font-size: 22px;
+    color: #ffffff;
+    margin: 20px;
+    font-weight: 500;
+}

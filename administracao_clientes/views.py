@@ -34,14 +34,17 @@ def meus_templates(request):
 
     return render(request, 'meus_templates.html', {'clientes': clientes, 'pesquisa': termo_buscado})
 
+
+@login_required
 def deletar_cliente(request, cliente):
     cliente_delete = get_object_or_404(Cliente, pk=cliente)
 
     if request.method == 'POST':
         cliente_delete.delete()
-        return redirect('meus_templates')
+        return redirect('templates')
     else:
         return render(request, 'cliente_delete.html', {'cliente': cliente_delete})
+
 
 def meu_cliente(request, cliente):
     

@@ -89,7 +89,6 @@ def subir_para_model(request ,lista_de_produtos, nome_cliente):
         usuario=request.user,
         cliente=nome_cliente
     )
-    cliente.save()
     for itens in lista_de_produtos:
         produtos = Produto.objects.create(
             cliente=cliente,

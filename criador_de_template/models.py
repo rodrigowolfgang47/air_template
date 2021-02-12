@@ -36,7 +36,7 @@ class Usuario(AbstractUser):
     estado = models.CharField(max_length=20, choices=UF_CHOICES)
 
 class Planilha(models.Model):
-    cliente = models.CharField(max_length=100, blank=True)
+    cliente = models.CharField(max_length=100, blank=False, null=False)
     documento = models.FileField(upload_to='media/%Y/%m/%d/')
     subido_as = models.DateTimeField(auto_now=True)
 

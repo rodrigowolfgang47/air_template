@@ -40,7 +40,7 @@
 
             <div class="login-cadastro-nome">
                 <h2>
-                    Meus Templates
+                    Meus Templates,
                     <p>Aqui vc pode gerenciar todos os seus templates</p>
                 </h2>
                 <form  method="post" action="{% url 'sair' %}">
@@ -57,7 +57,7 @@
                 <input id="campodepesquisa" type="search" name="pesquisa" placeholder="Busque por cliente" {% if pesquisa %} value=" {{ pesquisa }} "{% endif %}>
                 {% if pesquisa %}
                 <div class="filtro">
-                    <a href="{% url 'meus_templates' %}" class="btn-border">Limpar filtro</a>
+                    <a href="{% url 'templates' %}" class="btn-border">Limpar filtro</a>
                 </div>
                 {% endif %}
             </form>
