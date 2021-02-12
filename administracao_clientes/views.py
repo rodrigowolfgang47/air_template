@@ -47,8 +47,8 @@ def deletar_cliente(request, cliente):
 
 
 def meu_cliente(request, cliente):
-    
+    usuario = Usuario.objects.get(username=request.user)
     cliente = get_object_or_404(Cliente, pk=cliente)
     produtos = cliente.produto_set.all()
 
-    return render(request, 'template_final.html', {'produtos': produtos})
+    return render(request, 'template_final.html', {'produtos': produtos, 'user':usuario})

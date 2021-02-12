@@ -47,7 +47,16 @@
             {% endfor %}
         </div>
         <div class="contato">
-            <h6>Entre em contato com {{ user.capitalize }}</h6>
+            <h6>ENTRE EM CONTATO COM O VENDEDOR <b>{{ user.first_name.upper }}</b></h6>
+
+            <div class="campos">
+                <div>
+                    {% icon "smartphone" class="css-class" %} <a href="https://api.whatsapp.com/send?phone=+55{{user.celular}}" target="_blank">{{user.celular}}</a>
+                </div>
+                <div>
+                    {% icon "mail" class="css-class" %} <a href="mailto:{{user.email}}">{{user.email}}</a>
+                </div>
+            </div>
 
         </div>
 

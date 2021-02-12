@@ -183,16 +183,52 @@ h2{
 }
 
 .contato{
-    height: 300px;
     width: 100%;
     background: #64A0E5;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 45px;
 }
 
 h6{
     font-size: 22px;
     color: #ffffff;
-    margin: 20px;
     font-weight: 500;
+    margin: 0 auto;
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
+}
+
+.campos{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.campos div{
+    display: flex;
+    align-items: center;
+    margin: 20px 7px;
+    height: 45px;
+    padding: 30px;
+    border: 1px solid white;
+    border-radius: 7px;
+}
+
+.campos a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.campos svg{
+    stroke: white;
+    margin-right: 7px;
+    border-right: 1px solid white;
+    padding-right: 7px;
+}
+
+.contato b{
+    color: white;
 }
