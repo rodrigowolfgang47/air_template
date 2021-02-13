@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load icon %}
+
+{% block content %} <link rel="stylesheet" href="{% static 'estilo/base_template.css' %}"> {% endblock %}
+
+{% block title %}{{ produtos.0.cliente}}{% endblock %}
+
+{% block main %}
+    </div>
+    <main>
+        <div id="banner">
+            <img src="{% static 'img/Vector_img_branco.png' %}" alt="Imagem_do_produto">
+            <p>Banner</p>
+        </div>
+
+        <div class="produto-content">
+            {% for produto in produtos %}
+                <article class="caixa-produto">
+                    <div class="img-produto">
+                        <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
+                    </div>
+
+                    <div class="preco">
+                        <p>R$ {{ produto.preco }}</p>
+                    </div>
+
+                    <div class="descricao">
+
+                        <div class="marca">
+                            <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
+                        </div>
+
+                        <div class="informacoes">
+                            <p class="codigo"> Cod: {{ produto.cod_da_peca }}</p>
+                            <p class="produto"> {{ produto.descricao }}</p>
+                            <p>{{ produto.aplicacao }}</p>
+                        </div>
+                    </div>
+
+                </article>
+            {% endfor %}
+        </div>
+        
+        <div class="contato">
+            <h6>ENTRE EM CONTATO COM O VENDEDOR <b>{{ user.first_name.upper }}</b></h6>
+
+            <div class="campos">
+                <div>
+                    {% icon "smartphone" class="css-class" %} <a href="https://api.whatsapp.com/send?phone=+55{{user.celular}}" target="_blank">{{user.celular}}</a>
+                </div>
+                <div>
+                    {% icon "mail" class="css-class" %} <a href="mailto:{{user.email}}">{{user.email}}</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}

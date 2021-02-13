@@ -268,3 +268,8 @@ h6{
     fill: #ffffff;
     margin-right: 10px;
 }
+
+button{
+    background: none;
+    border: none;
+}

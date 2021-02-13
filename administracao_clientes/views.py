@@ -45,10 +45,18 @@ def deletar_cliente(request, cliente):
     else:
         return render(request, 'cliente_delete.html', {'cliente': cliente_delete})
 
-
+@login_required
 def meu_cliente(request, cliente):
     usuario = Usuario.objects.get(username=request.user)
     cliente = get_object_or_404(Cliente, pk=cliente)
     produtos = cliente.produto_set.all()
 
     return render(request, 'template_final.html', {'produtos': produtos, 'user':usuario})
+
+def template_estatico(request, cliente, user):
+    print(cliente)
+    cliente = get_object_or_404(Cliente, pk=cliente)
+    produtos = cliente.produto_set.all()
+    usuario = Usuario.objects.get(username=user)
+
+    return render(request, 'layout_estatico.html', {'produtos':produtos, 'user':usuario})
