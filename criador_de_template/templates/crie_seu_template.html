@@ -110,6 +110,13 @@
                                 <div class="campo">
                                     {{form.documento}}
                                 </div>
+                                {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
                                 <ul>
                                     {% for error in form.documento.errors %}
                                         {% if error %}

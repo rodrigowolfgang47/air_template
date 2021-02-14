@@ -8,6 +8,9 @@ from .forms import PlanilhaForm
 from .models import Produto, Cliente
 from django.contrib.auth.models import User
 from .models import Usuario
+from django.db import IntegrityError
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -85,20 +88,31 @@ def leitor_de_planilha(planilha):
 
 # Sobe para model a planilha lida
 def subir_para_model(request ,lista_de_produtos, nome_cliente):
-    cliente = Cliente.objects.create(
-        usuario=request.user,
-        cliente=nome_cliente
-    )
-    for itens in lista_de_produtos:
-        produtos = Produto.objects.create(
-            cliente=cliente,
-            cod_da_peca=itens['Cód. Cobra'],
-            marca=itens['Marca'],
-            descricao=itens['Descrição de produto'],
-            aplicacao=itens['Aplicação'],
-            preco=itens['Preço'],
-            destaque=itens['Gostaria de destacar este produto?'],
+    
+    try:
+        cliente = Cliente.objects.create(
+            cliente=nome_cliente,
+            usuario=request.user
         )
+
+        print(f'\n{cliente}\n')
+
+        if cliente:
+            for itens in lista_de_produtos:
+                produtos = Produto.objects.create(
+                    cliente=cliente,
+                    cod_da_peca=itens['Cód. Cobra'],
+                    marca=itens['Marca'],
+                    descricao=itens['Descrição de produto'],
+                    aplicacao=itens['Aplicação'],
+                    preco=itens['Preço'],
+                    destaque=itens['Gostaria de destacar este produto?'],
+                )
+    except IntegrityError:
+        print('O erro acoteceu')
+        mensagem =  messages.error(request, 'O cliente já existe na sua lista.')
+        return mensagem
+
     return nome_cliente
 
 
@@ -118,12 +132,15 @@ def upload_files(request):
 
             cliente = request.POST.get('cliente')
 
-            subir_para_model(request, dicionario_com_dados, cliente)
+            retorno = subir_para_model(request, dicionario_com_dados, cliente)
 
-            cliente = Cliente.objects.get(cliente=cliente)
-            produtos = cliente.produto_set.all()
+            if retorno == None:
+                return redirect('cria-template')
+            else:
+                cliente = Cliente.objects.get(cliente=cliente)
+                produtos = cliente.produto_set.all()
 
-            return render(request, 'template_final.html', {'produtos': produtos})
+                return render(request, 'template_final.html', {'produtos': produtos})
     else:
         form = PlanilhaForm()
     return render(request, 'crie_seu_template.html', {'form': form})

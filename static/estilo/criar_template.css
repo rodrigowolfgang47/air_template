@@ -502,3 +502,11 @@ span a {
     color: #fff;
     border-color: #DF4343;
 }
+
+.icon ul li{
+    font-size: 11px;
+    color: rgb(226, 17, 17);
+    font-weight: 550;
+    justify-self: flex-start;
+    margin-right: 20px;
+}
