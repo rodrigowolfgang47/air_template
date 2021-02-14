@@ -54,7 +54,7 @@
 
             <form method="GET" class="pesquisa">
                 <button type="submit"><i>{% icon "search" class="css-class" %}</i></button>
-                <input id="campodepesquisa" type="search" name="pesquisa" placeholder="Busque por cliente" {% if pesquisa %} value=" {{ pesquisa }} "{% endif %}>
+                <input id="campodepesquisa" type="search" name="pesquisa" placeholder="Busque por clientes" {% if pesquisa %} value=" {{ pesquisa }} "{% endif %}>
                 {% if pesquisa %}
                 <div class="filtro">
                     <a href="{% url 'templates' %}" class="btn-border">Limpar filtro</a>
