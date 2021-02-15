@@ -1,0 +1,7 @@
+# See the name for you IDE
+.ideia
+# If you are using sqlite3
+*db.sqlite3
+# Name of your virtuan env
+.venv
+*pyc
