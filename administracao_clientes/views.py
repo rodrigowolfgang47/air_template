@@ -3,14 +3,14 @@ from criador_de_template.models import Cliente, Usuario
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 
 @login_required
 def meus_templates(request):
-
-    #busca aqui
+    # busca aqui
     termo_buscado = request.GET.get('pesquisa', None)
-    
+
     if termo_buscado:
 
         usuario = Usuario.objects.get(username=request.user)
@@ -21,7 +21,7 @@ def meus_templates(request):
         pagina = request.GET.get('page')
 
         clientes = paginador.get_page(pagina)
-        
+
     else:
         usuario = Usuario.objects.get(username=request.user)
 
@@ -45,13 +45,15 @@ def deletar_cliente(request, cliente):
     else:
         return render(request, 'cliente_delete.html', {'cliente': cliente_delete})
 
+
 @login_required
 def meu_cliente(request, cliente):
     usuario = Usuario.objects.get(username=request.user)
     cliente = get_object_or_404(Cliente, pk=cliente)
     produtos = cliente.produto_set.all()
 
-    return render(request, 'template_final.html', {'produtos': produtos, 'user':usuario})
+    return render(request, 'template_final.html', {'produtos': produtos, 'user': usuario})
+
 
 def template_estatico(request, cliente, user):
     print(cliente)
@@ -59,4 +61,4 @@ def template_estatico(request, cliente, user):
     produtos = cliente.produto_set.all()
     usuario = Usuario.objects.get(username=user)
 
-    return render(request, 'layout_estatico.html', {'produtos':produtos, 'user':usuario})
+    return render(request, 'layout_estatico.html', {'produtos': produtos, 'user': usuario})

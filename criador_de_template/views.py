@@ -6,10 +6,9 @@ import mimetypes
 import pandas as pd
 from .forms import PlanilhaForm
 from .models import Produto, Cliente
-from django.contrib.auth.models import User
-from .models import Usuario
 from django.db import IntegrityError
 from django.contrib import messages
+import os
 
 
 
@@ -85,6 +84,19 @@ def leitor_de_planilha(planilha):
 
     return lista_de_dicionario
 
+#Verifica se há fotos na pasta
+def leitor_de_imagens(cod_da_peca):
+    caminho = 'C:/Users/rodri/OneDrive/Área de Trabalho/img/pecas'
+
+    lista_de_imagens = os.listdir(caminho)
+
+    for i in range(len(lista_de_imagens)):
+        lista_de_imagens[i] = lista_de_imagens[i].upper()
+        lista_de_imagens[i] = lista_de_imagens[i].replace('.JPG', '')
+
+    print(lista_de_imagens)
+
+    return cod_da_peca in lista_de_imagens
 
 # Sobe para model a planilha lida
 def subir_para_model(request ,lista_de_produtos, nome_cliente):
@@ -99,15 +111,35 @@ def subir_para_model(request ,lista_de_produtos, nome_cliente):
 
         if cliente:
             for itens in lista_de_produtos:
-                produtos = Produto.objects.create(
-                    cliente=cliente,
-                    cod_da_peca=itens['Cód. Cobra'],
-                    marca=itens['Marca'],
-                    descricao=itens['Descrição de produto'],
-                    aplicacao=itens['Aplicação'],
-                    preco=itens['Preço'],
-                    destaque=itens['Gostaria de destacar este produto?'],
-                )
+                codigo = itens['Cód. Cobra']
+
+                tem_foto = leitor_de_imagens(str(codigo))
+
+                print(tem_foto)
+
+                if tem_foto:
+                    Produto.objects.create(
+                        cliente=cliente,
+                        cod_da_peca=itens['Cód. Cobra'],
+                        marca=itens['Marca'],
+                        descricao=itens['Descrição de produto'],
+                        aplicacao=itens['Aplicação'],
+                        preco=itens['Preço'],
+                        destaque=itens['Gostaria de destacar este produto?'],
+                        imagem=itens['Cód. Cobra']
+                    )
+                else:
+                    Produto.objects.create(
+                        cliente=cliente,
+                        cod_da_peca=itens['Cód. Cobra'],
+                        marca=itens['Marca'],
+                        descricao=itens['Descrição de produto'],
+                        aplicacao=itens['Aplicação'],
+                        preco=itens['Preço'],
+                        destaque=itens['Gostaria de destacar este produto?'],
+                        imagem=itens['Marca']
+                    )
+
     except IntegrityError:
         print('O erro acoteceu')
         mensagem =  messages.error(request, 'O cliente já existe na sua lista.')

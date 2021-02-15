@@ -18,7 +18,7 @@
             {% for produto in produtos %}
                 <article class="caixa-produto">
                     <div class="img-produto">
-                        <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
+                        <img class="foto" src="{% static 'img/pecas_logos/' %}{{produto.imagem.lower}}.jpg" alt="{{produto.imagem.lower}}">
                     </div>
 
                     <div class="preco">
@@ -28,7 +28,7 @@
                     <div class="descricao">
 
                         <div class="marca">
-                            <img src="{% static 'img/Vector_img.png' %}" alt="Imagem_do_produto">
+                            <img src="{% static 'img/pecas_logos/' %}{{produto.marca.lower}}.jpg" alt="{{produto.marca.lower}}">
                         </div>
 
                         <div class="informacoes">

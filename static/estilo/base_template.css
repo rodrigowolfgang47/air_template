@@ -73,6 +73,9 @@ produto-content{
     margin-bottom: 6px;
 }
 
+.foto{
+    width: 180px;
+}
 
 .preco{
     width: 100%;
@@ -112,7 +115,7 @@ produto-content{
 }
 
 .marca img{
-    width: 33px;
+    width: 75px;
 }
 
 .codigo{
