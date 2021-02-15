@@ -11,7 +11,6 @@ from django.contrib import messages
 import os
 
 
-
 # Create your views here.
 
 # Coloquei o decorator login_request para obrigar o usuário a logar
@@ -64,7 +63,7 @@ def leitor_de_planilha(planilha):
 
     lista_de_dicionario = []
 
-    #Ler a linha
+    # Ler a linha
     titulo_da_planilha = date_frame.loc[0]
 
     # Primeira coluna
@@ -82,9 +81,14 @@ def leitor_de_planilha(planilha):
 
         lista_de_dicionario.append(dicionario_com_itens)
 
+    for itens in lista_de_dicionario:
+        itens['Cód. Cobra'] = itens['Cód. Cobra'].upper()
+        itens['Marca'] = itens['Marca'].lower()
+
     return lista_de_dicionario
 
-#Verifica se há fotos na pasta
+
+# Verifica se há fotos na pasta
 def leitor_de_imagens(cod_da_peca):
     caminho = 'C:/Users/rodri/OneDrive/Área de Trabalho/img/pecas'
 
@@ -98,9 +102,9 @@ def leitor_de_imagens(cod_da_peca):
 
     return cod_da_peca in lista_de_imagens
 
+
 # Sobe para model a planilha lida
-def subir_para_model(request ,lista_de_produtos, nome_cliente):
-    
+def subir_para_model(request, lista_de_produtos, nome_cliente):
     try:
         cliente = Cliente.objects.create(
             cliente=nome_cliente,
@@ -142,7 +146,7 @@ def subir_para_model(request ,lista_de_produtos, nome_cliente):
 
     except IntegrityError:
         print('O erro acoteceu')
-        mensagem =  messages.error(request, 'O cliente já existe na sua lista.')
+        mensagem = messages.error(request, 'O cliente já existe na sua lista.')
         return mensagem
 
     return nome_cliente
