@@ -90,7 +90,7 @@ def leitor_de_planilha(planilha):
 
 # Verifica se há fotos na pasta
 def leitor_de_imagens(cod_da_peca):
-    caminho = 'C:/Users/rodri/OneDrive/Área de Trabalho/img/pecas'
+    caminho = 'static/img/pecas_logos'
 
     lista_de_imagens = os.listdir(caminho)
 
