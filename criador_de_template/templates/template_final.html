@@ -35,7 +35,7 @@
             {% for produto in produtos %}
                 <article class="caixa-produto">
                     <div class="img-produto">
-                        <img class="foto" src="{% static 'img/pecas_logos/' %}{{produto.imagem.lower}}.jpg" alt="{{produto.imagem.lower}}">
+                        <img class="foto" src="{% static 'img/pecas_logos/' %}{{produto.imagem}}.jpg" alt="{{produto.imagem.lower}}">
                     </div>
 
                     <div class="preco">
