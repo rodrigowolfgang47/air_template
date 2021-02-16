@@ -56,9 +56,9 @@ INSTALLED_APPS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.office365.com'
-EMAIL_HOST_USER = 'rodrigocosta47@outlook.com'
-EMAIL_HOST_PASSWORD = 'Gabi@55136691'
-EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
