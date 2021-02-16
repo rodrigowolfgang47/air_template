@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     'administracao_clientes',
 
     #APPS EXTERNOS
-    'django_feather',
-    'project',
+    'django_feather'
 ]
 
 #configura o back-end para disparar e-mails de confirmações de cadastro
