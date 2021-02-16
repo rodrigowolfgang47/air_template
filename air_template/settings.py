@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.office365.com'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_USER = config('rodrigocosta47@outlook.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
 
@@ -94,9 +94,9 @@ WSGI_APPLICATION = 'air_template.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'postgresql')
 
-DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
+DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
 
 AUTH_USER_MODEL = 'criador_de_template.Usuario'
 
