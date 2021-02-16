@@ -1,1 +1,1 @@
-web: gunicorn air-template.wsgi
+web: gunicorn air-template.air_template.wsgi
