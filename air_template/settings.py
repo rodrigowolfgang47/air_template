@@ -151,3 +151,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'criador_de_template/media')
+
+WEB_CONCURRENCY = 3
