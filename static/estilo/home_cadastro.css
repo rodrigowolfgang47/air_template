@@ -16,6 +16,10 @@ h3, span, span p, .login-cadastro-nome a{
     color: white;
 }
 
+.botao-responsivo{
+    color: #ffffff;
+}
+
 h3{
     font-size: 90px;
     display: flex;
@@ -165,4 +169,62 @@ svg {
 
 .segundo-form input{
     padding-left: 10px;
+}
+
+@media (max-width: 425px){
+    main{
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 100% ;
+    }
+    .container-esquerdo, .container-direito{
+        min-width: 425px;
+    }
+
+    .container-menor-esquerdo{
+        height: 30%;
+    }
+
+    .container-direito{
+        background-color: #64A0E6;
+    }
+
+    .container-monor-direito{
+        height: 80vh;
+    }
+
+    h3{
+        font-size: 35px;
+    }
+
+    span{
+        display: none;
+    }
+
+    h2{
+        color: #ffffff;
+    }
+
+    .btn-login-cadastro{
+        background-color: #ffffff;
+    }
+
+    .login-cadastro-nome a{
+        color: #64A0E6;
+    }.btn-login-cadastro{
+        color: #64a0e6;
+    }
+
+    h2{
+        font-size: 34px;
+    }
+
+    .texto-final{
+        color: #ffffff;
+    }
+
+    .texto-final a{
+        color: #ffffff;
+    }
+
 }
