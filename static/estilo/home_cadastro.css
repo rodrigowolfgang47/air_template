@@ -239,4 +239,27 @@ svg {
     .container-menor-direito{
         height: 95vh;
     }
+
+    @media (min-heifht: 475px){
+        .icon{
+            padding-bottom: 10px;
+            }
+
+        }
+
+        .container-esquerdo{
+            display: none;
+        }
+
+        .container-menor-direito{
+            height: 140vh;
+            padding-top: 40px;
+        }
+
+        .icon-dois-itens{
+            padding-bottom: 10px;
+        }
+    }
+
+
 }
