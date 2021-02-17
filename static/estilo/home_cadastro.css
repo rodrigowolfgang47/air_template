@@ -186,7 +186,8 @@ svg {
     }
 
     .container-menor-esquerdo{
-        height: 30%;
+        height: 40%;
+        padding: 10px 0px;
     }
 
     .container-esquerdo{
@@ -197,9 +198,6 @@ svg {
         background-color: #64A0E6;
     }
 
-    .container-monor-direito{
-        height: 80vh;
-    }
 
     h3{
         font-size: 35px;
@@ -220,7 +218,9 @@ svg {
 
     .login-cadastro-nome a{
         color: #64A0E6;
-    }.btn-login-cadastro{
+    }
+    
+    .btn-login-cadastro{
         color: #64a0e6;
     }
 
@@ -230,13 +230,20 @@ svg {
 
     .texto-final a{
         color: #ffffff;
+        margin: 10px;
+        padding: 10px;
     }
 
     .form-de-cadastro{
-        height: 84%
+        height: 100%
     }
 
     .container-menor-direito{
-        height: 95vh;
+        height: 100vh;
+    }
+
+
+    body{
+        height: 100%;
     }
 }
