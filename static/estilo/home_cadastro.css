@@ -176,13 +176,21 @@ svg {
         flex-direction: row;
         flex-wrap: wrap;
         height: 100% ;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
     }
     .container-esquerdo, .container-direito{
-        min-width: 425px;
+        width: 425px;
+        height: 100%;
     }
 
     .container-menor-esquerdo{
         height: 30%;
+    }
+
+    .container-esquerdo{
+        height: 22%;
     }
 
     .container-direito{
@@ -203,6 +211,7 @@ svg {
 
     h2{
         color: #ffffff;
+        font-size: 25px;
     }
 
     .btn-login-cadastro{
@@ -215,10 +224,6 @@ svg {
         color: #64a0e6;
     }
 
-    h2{
-        font-size: 34px;
-    }
-
     .texto-final{
         color: #ffffff;
     }
@@ -227,4 +232,11 @@ svg {
         color: #ffffff;
     }
 
+    .form-de-cadastro{
+        height: 84%
+    }
+
+    .container-menor-direito{
+        height: 95vh;
+    }
 }
