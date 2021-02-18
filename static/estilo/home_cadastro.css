@@ -171,17 +171,18 @@ svg {
     padding-left: 10px;
 }
 
-@media (max-width: 425px){
+@media (max-width: 600px){
     main{
         flex-direction: row;
         flex-wrap: wrap;
-        height: 100% ;
+        height: 100%;
         width: 100%;
         max-width: 100%;
         justify-content: center;
     }
     .container-esquerdo, .container-direito{
-        width: 425px;
+        max-width: 600px;
+        width: 100%;
         height: 100%;
     }
 
@@ -231,19 +232,18 @@ svg {
     .texto-final a{
         color: #ffffff;
         margin: 10px;
-        padding: 10px;
+        padding: 10px 55px;
     }
 
     .form-de-cadastro{
-        height: 100%
+        height: 100%;
     }
 
     .container-menor-direito{
-        height: 100vh;
+        height: 90%;
     }
-
-
+    
     body{
-        height: 100%;
+        height: 100vh;
     }
 }
