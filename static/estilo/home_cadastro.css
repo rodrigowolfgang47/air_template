@@ -171,6 +171,8 @@ svg {
     padding-left: 10px;
 }
 
+
+
 @media (max-width: 600px){
     main{
         flex-direction: row;
@@ -248,7 +250,11 @@ svg {
 
     input, select{
         margin: 6px 0px;
-    }
+    }    
+}
 
-    
+@media (max-height: 200px){
+    .container-direito{
+        height: 200%;
+    }
 }
