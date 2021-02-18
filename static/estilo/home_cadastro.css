@@ -245,4 +245,10 @@ svg {
     body{
         height: 100vh;
     }
+
+    input, select{
+        margin: 6px 0px;
+    }
+
+    
 }
