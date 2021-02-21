@@ -171,6 +171,14 @@ svg {
     padding-left: 10px;
 }
 
+.form-de-cadastro{
+    height: 100%;
+}
+
+.icon{
+    margin: 10px;
+}
+
 
 
 @media (max-width: 600px){

@@ -98,8 +98,6 @@ def leitor_de_imagens(cod_da_peca):
         lista_de_imagens[i] = lista_de_imagens[i].upper()
         lista_de_imagens[i] = lista_de_imagens[i].replace('.JPG', '')
 
-    print(lista_de_imagens)
-
     return cod_da_peca in lista_de_imagens
 
 
@@ -111,15 +109,11 @@ def subir_para_model(request, lista_de_produtos, nome_cliente):
             usuario=request.user
         )
 
-        print(f'\n{cliente}\n')
-
         if cliente:
             for itens in lista_de_produtos:
                 codigo = itens['Cód. Cobra']
 
                 tem_foto = leitor_de_imagens(str(codigo))
-
-                print(tem_foto)
 
                 if tem_foto:
                     Produto.objects.create(
@@ -145,7 +139,6 @@ def subir_para_model(request, lista_de_produtos, nome_cliente):
                     )
 
     except IntegrityError:
-        print('O erro acoteceu')
         mensagem = messages.error(request, 'O cliente já existe na sua lista.')
         return mensagem
 
