@@ -1,13 +1,17 @@
 asgiref==3.3.1
+boto3==1.17.17
+botocore==1.20.17
 certifi==2020.12.5
 chardet==4.0.0
 dj-database-url==0.5.0
 dj-static==0.0.6
 Django==3.1.5
 django-feather==0.2.6
+django-storages==1.11.1
 et-xmlfile==1.0.1
 idna==2.10
 jdcal==1.4.1
+jmespath==0.10.0
 numpy==1.19.5
 openpyxl==3.0.6
 pandas==1.2.1
@@ -16,6 +20,7 @@ python-dateutil==2.8.1
 python-decouple==3.4
 pytz==2020.5
 requests==2.25.1
+s3transfer==0.3.4
 six==1.15.0
 sqlparse==0.4.1
 static3==0.7.0

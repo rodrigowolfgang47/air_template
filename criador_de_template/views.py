@@ -29,8 +29,9 @@ def sair(request):
 
 
 # View responsável por gerar o download
+# não estou mais utilizando esta view
 def download_file(request):
-    file_path = "criador_de_template/staticfiles/excel/base_air_template_layout.xlsx"
+    file_path = "criador_de_template/static/excel/base_air_template_layout.xlsx"
     file_name = 'base_air_template_layout.xlsx'
 
     # Adicionei a lib pandas para abrir a planilha e a openpyxl para gerenciar os arquivos em excel
