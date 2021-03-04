@@ -43,41 +43,28 @@ def download_file(request):
 
 
 # responsavel por ler a planilha que foi enviada
-def leitor_de_planilha(planilha):
+def leitor_de_planilha(request, planilha):
     date_frame = pd.read_excel(planilha, index_col=None, header=None)
-
-    armazena_cod = []
-
-    # pega a primeira coluna inteita
-    colunas = date_frame[0]
-    linhas_por_linha = 1
-
-    for cod in colunas:
-        while linhas_por_linha <= len(colunas) - 1:
-            codigo_da_peca = colunas[linhas_por_linha]
-            linhas_por_linha += 1
-            armazena_cod.append(codigo_da_peca)
-
-    # ------------------------------------------------ #
-
     # titulo da planilha começa aqui
-
+    date_frame.fillna('-', inplace=True)
     lista_de_dicionario = []
 
-    # Ler a linha
+    # pega a primeira linha da planilha
     titulo_da_planilha = date_frame.loc[0]
 
-    # Primeira coluna
     todos_os_cod = date_frame[0]
 
-    # Le todos os códigos começando pela linha 1 e termina na 15
     for codigos in range(1, len(todos_os_cod)):
         dicionario_com_itens = {}
         linhas = date_frame.loc[codigos]
         comeca_na_primeira_coluna = 0
 
         for titulo in titulo_da_planilha:
-            dicionario_com_itens[titulo_da_planilha[comeca_na_primeira_coluna]] = linhas[comeca_na_primeira_coluna]
+            titulo_da_coluna = titulo_da_planilha[comeca_na_primeira_coluna]
+            linhas_da_coluna = linhas[comeca_na_primeira_coluna]
+
+            dicionario_com_itens[titulo_da_coluna] = linhas_da_coluna
+
             comeca_na_primeira_coluna += 1
 
         lista_de_dicionario.append(dicionario_com_itens)
@@ -85,6 +72,19 @@ def leitor_de_planilha(planilha):
     for itens in lista_de_dicionario:
         itens['Cód. Cobra'] = itens['Cód. Cobra'].upper()
         itens['Marca'] = itens['Marca'].lower()
+
+    for itens in lista_de_dicionario:
+        eh_float = isinstance(itens['Preço'], float)
+        print(eh_float)
+
+        if itens['Marca'] == "-":
+            mensagem = messages.error(request, 'O campo de marca não pode estar em branco, verifique a planilha')
+            return mensagem
+
+        elif eh_float:
+            mensagem = messages.error(request, 'O campo de preço deve conter um valor numérico, verifique a planilha')
+            return mensagem
+
 
     return lista_de_dicionario
 
@@ -158,7 +158,10 @@ def upload_files(request):
             url_do_arquivo_na_pasta = nome_do_arquivo.documento
 
             # funcao que le os dados da planilha e retorna um dicionario
-            dicionario_com_dados = leitor_de_planilha(url_do_arquivo_na_pasta)
+            dicionario_com_dados = leitor_de_planilha(request,url_do_arquivo_na_pasta)
+
+            if dicionario_com_dados == None:
+                return redirect('cria-template')
 
             cliente = request.POST.get('cliente')
 
