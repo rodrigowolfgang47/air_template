@@ -72,17 +72,24 @@ def leitor_de_planilha(request, planilha):
     for itens in lista_de_dicionario:
         itens['Cód. Cobra'] = itens['Cód. Cobra'].upper()
         itens['Marca'] = itens['Marca'].lower()
+        try:
+            itens['Preço'] = float(itens['Preço'])
+        except:
+            continue
 
     for itens in lista_de_dicionario:
         eh_float = isinstance(itens['Preço'], float)
+        aplicacao_eh_float = isinstance(itens['Aplicação'], float)
+
         print(eh_float)
+        print(f'Preço:{itens["Preço"]}')
 
         if itens['Marca'] == "-":
             mensagem = messages.error(request, 'O campo de marca não pode estar em branco, verifique a planilha')
             return mensagem
 
-        elif eh_float:
-            mensagem = messages.error(request, 'O campo de preço deve conter um valor numérico, verifique a planilha')
+        elif not eh_float:
+            mensagem = messages.error(request, 'O valor do preço deve ser numério')
             return mensagem
 
 
