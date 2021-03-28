@@ -5,3 +5,5 @@
 .venv
 *pyc
 .env
+venvat
+db.sqlite3
