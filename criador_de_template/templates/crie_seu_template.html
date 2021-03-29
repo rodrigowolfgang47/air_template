@@ -2,7 +2,8 @@
 {% load static %}
 {% load icon %}
 
-{% block content %} <link rel="stylesheet" href="{% static 'estilo/criar_template.css' %}"> {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'estilo/criar_template.css' %}"> {% endblock %}
 
 {% block title %}Crie seu template{% endblock %}
 
@@ -13,7 +14,7 @@
         <div class="container-menor-esquerdo">
             <div>
                 <h3>Olá {{ user.username.capitalize }}</h3>
-            
+
                 <nav>
                     <ul>
                         <li id="nesta-pagina">
@@ -24,19 +25,19 @@
                             <i>{% icon "list" class="css-class" %}</i>
                             <a href="{% url 'templates' %}">Meus templates</a>
                         </li>
-        
+
                     </ul>
                 </nav>
             </div>
 
             <div class="desenvolvido">
-                <span>Ar_template® <p> v1.0</p></span>            
+                <span>Ar_template® <p> v1.0</p></span>
                 <span>Desenvolvido Por Rodrigo C.®</span>
-            </div>          
+            </div>
         </div>
     </div>
 
-    
+
     <div class="container-direito">
 
         <div class="container-menor-direito">
@@ -46,7 +47,7 @@
                     Crie seu template,
                     <p>São apenas alguns passos</p>
                 </h2>
-                <form  method="post" action="{% url 'sair' %}">
+                <form method="post" action="{% url 'sair' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn-red">
                         <i>{% icon "log-out" class="css-class" %}</i>
@@ -56,20 +57,21 @@
             </div>
 
             <div class="instrucoes">
-                
-                <div class="content" >
+
+                <div class="content">
                     <i>{% icon "file-plus" class="css-class" %}</i>
                     <h4>
                         Faça o download do modelo de planilha
                     </h4>
                     <form>
-                        <a href="https://docs.google.com/spreadsheets/d/1I2_e-29rs8hlN9JtsV1s-Kcvbo_tGvPUnf-py4QDUcc/export?format=xlsx&id=1I2_e-29rs8hlN9JtsV1s-Kcvbo_tGvPUnf-py4QDUcc" class="btn-border">
+                        <a href="https://docs.google.com/spreadsheets/d/1I2_e-29rs8hlN9JtsV1s-Kcvbo_tGvPUnf-py4QDUcc/export?format=xlsx&id=1I2_e-29rs8hlN9JtsV1s-Kcvbo_tGvPUnf-py4QDUcc"
+                            class="btn-border">
                             Download aqui
                         </a>
                     </form>
                 </div>
 
-                <div class="content" >
+                <div class="content">
                     <i>{% icon "video" class="css-class" %}</i>
                     <h4>
                         Assista o video e saiba como preencher sua planilha
@@ -82,7 +84,7 @@
             </div>
 
             <div class="instrucoes">
-                <div class="content-2" >
+                <div class="content-2">
                     <i id="icon-maior">{% icon "send" class="css-class" %}</i>
                     <h4>
                         Tudo pronto? Agora é só clicar no botão criar layout
@@ -97,12 +99,12 @@
                                 </div>
                                 <ul>
                                     {% for error in form.cliete.errors %}
-                                        {% if error %}
-                                            <li>
-                                                {{ error }}
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %} 
+                                    {% if error %}
+                                    <li>
+                                        {{ error }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
                                 </ul>
                             </div>
 
@@ -119,12 +121,12 @@
                                 {% endif %}
                                 <ul>
                                     {% for error in form.documento.errors %}
-                                        {% if error %}
-                                            <li>
-                                                {{ error }}
-                                            </li>
-                                        {% endif %}
-                                    {% endfor %} 
+                                    {% if error %}
+                                    <li>
+                                        {{ error }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
                                 </ul>
                             </div>
 
@@ -138,8 +140,21 @@
 
         </div>
     </div>
-    
+
 </main>
+<script>
+
+    var entrada = document.querySelector("#id_cliente")
+
+    function inputEventHandler(e) {
+        console.log(entrada.value)
+        var repor = entrada.value.includes(" ")
+        if (repor) {
+            entrada.value = entrada.value.replace(" ", "-")
+        }
+    };
+    document.getElementById("id_cliente").addEventListener("input", inputEventHandler);
+</script>
 
 
 {% endblock %}
